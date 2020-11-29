@@ -12,6 +12,8 @@ on:
 
 env:
    CI: False
+   NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+   NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -48,6 +50,12 @@ jobs:
       # Run Tests.
       - name: Run tests.
         run: yarn test  
+      # Deploy to Netify Instructions
+      - name: Deploy to netlify
+        uses: netlify/actions/cli@master
+        with:
+          args: deploy --dir=build --prod
+          secrets: '["NETLIFY_AUTH_TOKEN", "NETLIFY_SITE_ID"]'  
       # Run Surge
       - name: Run Surge
         run: surge ./build/ https://shahzaibnoor-diary-app-bootcamp-2020.surge.sh --token ${{ secrets.shahzaib_diary_app_bootcamp_2020 }}  
