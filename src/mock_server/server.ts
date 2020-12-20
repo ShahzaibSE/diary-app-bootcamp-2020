@@ -1,8 +1,30 @@
-import {createServer, Model, Request} from "miragejs";
+import { Server, Model, Factory, belongsTo, hasMany, Response } from 'miragejs';
+// Models.
+import { User } from "../models/user.interface"
+import { Diary } from './../models/diary.interface'
+import { Entry } from "./../models/entry.interface"
+// Controllers.
+import { createUser } from "./controllers/user.controller"
+
+
+export interface AuthResponse {
+    token: string;
+    user: User;
+}
+
+// Error handler.
+export const handleErrors = (error: any, message = 'An error ocurred') => {
+    return new Response(400, undefined, {
+      data: {
+        message,
+        isError: true,
+      },
+    });
+};
 
 // Server.
 const createMockServer = function() {
-    createServer({
+    new Server({
         models:{
             user: Model
         },
@@ -10,17 +32,8 @@ const createMockServer = function() {
             this.get('/diaries/users',(schema:any)=>{
                 return schema.db.users
             })
-            this.post("/diaries/users/create", (schema:any,request:Request)=>{
-                console.log("User data on sign up")
-                console.log(request.requestBody)
-                schema.db.users.create(request.requestBody)
-                return {
-                    status: true,
-                    resCode: 200,
-                    message: "User created successfully",
-                    isError:false
-                }
-            })
+            // User Routes.
+            this.post("/diaries/users/create", createUser)
         }
     })
 }
