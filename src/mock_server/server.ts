@@ -4,7 +4,7 @@ import { User } from "../models/user.interface"
 import { Diary } from './../models/diary.interface'
 import { Entry } from "./../models/entry.interface"
 // Controllers.
-import { createUser } from "./controllers/user.controller"
+import { signUp } from "./controllers/user.controller"
 
 
 export interface AuthResponse {
@@ -23,19 +23,26 @@ export const handleErrors = (error: any, message = 'An error ocurred') => {
 };
 
 // Server.
-const createMockServer = function() {
+const mockServer = function() {
     new Server({
         models:{
             user: Model
+        },
+        factories: {
+            user: Factory.extend({
+                username: 'test',
+                password: 'password',
+                email: 'test@email.com',
+            })
         },
         routes(){
             this.get('/diaries/users',(schema:any)=>{
                 return schema.db.users
             })
             // User Routes.
-            this.post("/diaries/users/create", createUser)
+            this.post("/diaries/users/create", signUp)
         }
     })
 }
 
-export default createMockServer
+export default mockServer

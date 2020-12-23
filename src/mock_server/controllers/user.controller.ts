@@ -8,17 +8,6 @@ import { User } from "./../../models/user.interface"
 // Generate token.
 const generateToken = () => randomBytes(8).toString('hex')
 
-export const createUser = function(schema:any, request: Request) {
-    console.log("User to create")
-    console.log(request.requestBody)
-    return {
-        status: true,
-        resCode: 200,
-        isError:false,
-        message: "User created successfully"
-    }
-}
-
 export const login = (schema: any, req: Request): any => {
     const { username, password } = JSON.parse(req.requestBody);
     const user = schema.users.findBy({ username });
