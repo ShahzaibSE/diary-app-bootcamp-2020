@@ -13,7 +13,7 @@ export interface AuthResponse {
 }
 
 // Error handler.
-export const handleErrors = (error: any, message = 'An error ocurred') => {
+export const handleErrors:any = (error: any, message = 'An error ocurred') => {
     return new Response(400, undefined, {
       data: {
         message,
