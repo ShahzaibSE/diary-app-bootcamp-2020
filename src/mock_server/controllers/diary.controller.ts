@@ -5,7 +5,7 @@ import {handleErrors} from "./../server"
 // Models.
 import {Diary} from "./../../models/diary.interface"
 
-export const daysjs = new Dayjs()
+export const dayjs = new Dayjs()
 
 export const createDiary = (schema: any, req: Request) => {
     try {
@@ -15,7 +15,7 @@ export const createDiary = (schema: any, req: Request) => {
         if(!exUser) {
             return handleErrors(false, "User does not exist")
         }
-        const now = daysjs.format()
+        const now = dayjs.format()
         console.log("Current date")
         console.log(now)
         const diary = exUser.createDiary({
@@ -40,7 +40,7 @@ export const updateDiary = (schema:any, req:Request) => {
     try {
         const diary = schema.diaries.find(req.params.id)
         const data = JSON.parse(req.requestBody) as Partial<Diary>
-        const now = daysjs.format()
+        const now = dayjs.format()
         diary.update(
             {
                 ...data,

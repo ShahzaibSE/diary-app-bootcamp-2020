@@ -26,7 +26,17 @@ export const handleErrors:any = (error: any, message = 'An error ocurred') => {
 const mockServer = function() {
     new Server({
         models:{
-            user: Model
+            user: Model.extend({
+                diary: hasMany(),
+
+            }),
+            diary: Model.extend({
+                entry: hasMany(),
+                user: belongsTo()
+            }),
+            entry: Model.extend({
+                diary: belongsTo()
+            })
         },
         factories: {
             user: Factory.extend({
