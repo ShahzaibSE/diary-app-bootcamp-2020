@@ -18,4 +18,7 @@ ReactDOM.render(
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
 // Run Mock Server.
-mockServer()
+if (process.env.NODE_ENV === "development") {
+  console.log("Mock server is running.")
+  mockServer()
+}
