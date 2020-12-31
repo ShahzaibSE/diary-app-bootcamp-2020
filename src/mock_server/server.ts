@@ -4,7 +4,9 @@ import { User } from "../models/user.interface"
 import { Diary } from './../models/diary.interface'
 import { Entry } from "./../models/entry.interface"
 // Controllers.
-import { signUp } from "./controllers/user.controller"
+import { signUp, login } from "./controllers/user.controller"
+import { addEntry, getEntries, updateEntry } from "./controllers/entry.controller"
+import { createDiary, updateDiary, getDiaries } from "./controllers/diary.controller"
 
 
 export interface AuthResponse {
@@ -46,11 +48,20 @@ const mockServer = function() {
             })
         },
         routes(){
-            this.get('/diaries/users',(schema:any)=>{
-                return schema.db.users
-            })
+            // this.get('/diaries/users',(schema:any)=>{
+            //     return schema.db.users
+            // })
             // User Routes.
             this.post("/diaries/users/create", signUp)
+            this.post("/diaries/users/signin", login)
+            // Diary Routes.
+            this.post('/diaries/diary/create', createDiary)
+            this.post('/diaries/diary/update', updateDiary)
+            this.post('/diaries/diary/list', getDiaries)
+            // Entry Routes  
+            this.post("/diaries/entry/create", addEntry)
+            this.post("/diaries/entry/update", updateEntry)
+            this.post("/diaries/entry/list", getEntries)
         }
     })
 }
