@@ -57,6 +57,7 @@ const mockServer = function() {
             // Diary Routes.
             this.get('/diaries/:id', getDiaries)
             this.post('/diaries', createDiary)
+            this.put('/diaries/:id', updateDiary);
             // Entry route.
             this.post('/diaries/entry/:id', addEntry)
             this.post("/diaries/entry/:id", updateEntry)
