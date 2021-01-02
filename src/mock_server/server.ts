@@ -52,16 +52,15 @@ const mockServer = function() {
             //     return schema.db.users
             // })
             // User Routes.
-            this.post("/diaries/users/create", signUp)
-            this.post("/diaries/users/signin", login)
+            this.post("/auth/create", signUp)
+            this.post("/auth/signin", login)
             // Diary Routes.
-            this.post('/diaries/diary/create', createDiary)
-            this.post('/diaries/diary/update', updateDiary)
-            this.post('/diaries/diary/list', getDiaries)
-            // Entry Routes  
-            this.post("/diaries/entry/create", addEntry)
-            this.post("/diaries/entry/update", updateEntry)
-            this.post("/diaries/entry/list", getEntries)
+            this.get('/diaries/:id', getDiaries)
+            this.post('/diaries', createDiary)
+            // Entry route.
+            this.post('/diaries/entry/:id', addEntry)
+            this.post("/diaries/entry/:id", updateEntry)
+            this.post("/diaries/entry/:id", getEntries)
         }
     })
 }
