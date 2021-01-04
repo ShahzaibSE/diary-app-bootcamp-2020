@@ -10,6 +10,16 @@ export const createDiary = (diary: any)=>{
     }
 }
 
-export const updateDiary = ()=>{}
+export const updateDiary = (diary:any)=>{
+    let diary_requestBody = JSON.parse(diary) as Partial<Diary>
+    if (diary_requestBody) {
+        return http.post(`/diaries/${diary_requestBody.userId}`,diary)
+    }
+}
 
-export const getDiaries = ()=>{}
+export const getDiaries = (diary:any)=>{
+    let diary_requestBody = JSON.parse(diary) as Partial<Diary>
+    if (diary_requestBody) {
+        return http.get(`/diaries/${diary_requestBody.userId}`)
+    }
+}
