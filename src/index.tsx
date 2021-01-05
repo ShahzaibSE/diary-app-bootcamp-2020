@@ -5,6 +5,8 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 // Mock Server.
 import mockServer from "./../src/mock_server/server"
+// Service Worker.
+import sw from "./swDev"
 
 ReactDOM.render(
   <React.StrictMode>
@@ -20,5 +22,7 @@ reportWebVitals();
 // Run Mock Server.
 if (process.env.NODE_ENV === "development") {
   console.log("Mock server is running.")
-  mockServer()
+  // mockServer()
 }
+// Register service worker.
+// sw()
