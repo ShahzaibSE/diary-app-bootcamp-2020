@@ -71,8 +71,8 @@ const LoginSignUpContainer = () => {
                 variant="fullWidth"
                 aria-label="full width tabs example"
               >
-                <Tab label="Item One" {...a11yProps(0)} />
-                <Tab label="Item Two" {...a11yProps(1)} />
+                <Tab label="Log In" {...a11yProps(0)} />
+                <Tab label="Sign Up" {...a11yProps(1)} />
               </Tabs>
             </AppBar>
             <SwipeableViews
@@ -81,13 +81,10 @@ const LoginSignUpContainer = () => {
               onChangeIndex={handleChangeIndex}
             >
               <TabPanel value={value} index={0} dir={theme.direction}>
-                Item One
+                Log In
               </TabPanel>
               <TabPanel value={value} index={1} dir={theme.direction}>
-                Item Two
-              </TabPanel>
-              <TabPanel value={value} index={2} dir={theme.direction}>
-                Item Three
+                Sign Up
               </TabPanel>
             </SwipeableViews>
           </div>
