@@ -1,17 +1,17 @@
 import {Request, Response} from "miragejs"
+import * as dayjs from "dayjs"
 // Models.
 import {Diary} from "./../../models/diary.interface"
 import {Entry} from "./../../models/entry.interface"
 // Error handler.
 import {handleErrors} from "./../server"
-// Date formatter.
-import {dayjs} from "./diary.controller"
+
 
 export const addEntry = (schema: any,req: Request): { diary: Diary; entry: Entry } | Response => {
     try {
       const diary = schema.diaries.find(req.params.id);
       const { title, content } = JSON.parse(req.requestBody) as Partial<Entry>;
-      const now = dayjs.format();
+      const now = dayjs;
       const entry = diary.createEntry({
         title,
         content,
@@ -44,7 +44,7 @@ export const addEntry = (schema: any,req: Request): { diary: Diary; entry: Entry
     try {
       const entry = schema.entries.find(req.params.id);
       const data = JSON.parse(req.requestBody) as Partial<Entry>;
-      const now = dayjs.format();
+      const now = new dayjs.Dayjs().format()
       entry.update({
         ...data,
         updatedAt: now,

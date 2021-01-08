@@ -22,7 +22,7 @@ reportWebVitals();
 // Run Mock Server.
 if (process.env.NODE_ENV === "development") {
   console.log("Mock server is running.")
-  // mockServer()
+  mockServer()
 }
 // Register service worker.
 // sw()

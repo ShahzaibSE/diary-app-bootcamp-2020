@@ -5,6 +5,7 @@ import {AuthResponse, handleErrors} from "./../server"
 // Model.
 import { User } from "./../../models/user.interface"
 
+
 // Generate token.
 const generateToken = () => randomBytes(8).toString('hex')
 
