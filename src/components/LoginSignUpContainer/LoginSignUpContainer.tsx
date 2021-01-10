@@ -10,6 +10,7 @@ import Box from '@material-ui/core/Box';
 import Grid from "@material-ui/core/Grid"
 // Styles.
 import {LoginSignUpContainerStyles} from "./LoginSignUpContainer.style"
+import Login from "./../Login/Login"; // Login Component
 
 interface TabPanelProps {
     children?: React.ReactNode;
@@ -81,7 +82,7 @@ const LoginSignUpContainer = () => {
               onChangeIndex={handleChangeIndex}
             >
               <TabPanel value={value} index={0} dir={theme.direction}>
-                Log In
+                <Login/>
               </TabPanel>
               <TabPanel value={value} index={1} dir={theme.direction}>
                 Sign Up
