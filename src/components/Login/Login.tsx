@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import Button from "@material-ui/core/Button"
-import {Email, VpnKey} from "@material-ui/icons"
+import {Email, VpnKey, } from "@material-ui/icons"
 import TextField from '@material-ui/core/TextField';
 import Grid from "@material-ui/core/Grid";
 // Styles.
@@ -21,29 +21,42 @@ const Login = () => {
 
     return (
         <div>
-            <div className={classes.form_control_margin}>
-               <Grid container spacing={1} alignItems="flex-end"> 
-                <Grid item>
-                    <Email/>
+            <Grid container direction="column" alignContent="center" alignItems="center" justify="center">
+               <Grid item sm={12} md={12} lg={12}> 
+                <div className={classes.form_control_margin}>
+                    <Grid container spacing={1} alignItems="flex-end"> 
+                        <Grid item>
+                            <Email/>
+                        </Grid> 
+                        <Grid item>
+                            <TextField className={classes.text_field} label="Enter your Email" 
+                                        onChange={(event:React.ChangeEvent<HTMLInputElement>)=>{handleFormField(event,'email')}}/>
+                        </Grid>             
+                    </Grid>
+                </div>
+                <div className={classes.form_control_margin}>
+                    <Grid container spacing={1} alignItems="flex-end"> 
+                        <Grid item>
+                            <VpnKey/>
+                        </Grid> 
+                        <Grid item>
+                            <TextField className={classes.text_field} label="Enter your Password" type="password"
+                                        onChange={(event:React.ChangeEvent<HTMLInputElement>)=>{handleFormField(event,'password')}}/>
+                        </Grid>             
+                    </Grid>
+                </div>
+                </Grid>
+            </Grid>
+            <Grid container direction="column" alignContent="center" alignItems="center" justify="center">
+                <Grid item sm={12} md={12} lg={12}> 
+                <Button className={classes.login_btn}
+                    variant="contained" 
+                    size="large"
+                    color="primary">
+                    Log In
+                </Button>
                 </Grid> 
-                <Grid item>
-                    <TextField label="Enter your Email" 
-                                onChange={(event:React.ChangeEvent<HTMLInputElement>)=>{handleFormField(event,'email')}}/>
-                </Grid>             
-               </Grid>
-            </div>
-            <div className={classes.form_control_margin}>
-               <Grid container spacing={1} alignItems="flex-end"> 
-                <Grid item>
-                    <VpnKey/>
-                </Grid> 
-                <Grid item>
-                    <TextField label="Enter your Password" type="password"
-                                onChange={(event:React.ChangeEvent<HTMLInputElement>)=>{handleFormField(event,'password')}}/>
-                </Grid>             
-               </Grid>
-            </div>
-            <Button>Log In</Button>
+            </Grid>    
         </div>
     )
 }
