@@ -10,7 +10,8 @@ import Box from '@material-ui/core/Box';
 import Grid from "@material-ui/core/Grid"
 // Styles.
 import {LoginSignUpContainerStyles} from "./LoginSignUpContainer.style"
-import Login from "./../Login/Login"; // Login Component
+import Login from "./../Login/Login"; // Log In Component
+import SignUp from "./../SignUp/SignUp"; // Sign Up Component
 
 interface TabPanelProps {
     children?: React.ReactNode;
@@ -85,7 +86,7 @@ const LoginSignUpContainer = () => {
                 <Login/>
               </TabPanel>
               <TabPanel value={value} index={1} dir={theme.direction}>
-                Sign Up
+                <SignUp/>
               </TabPanel>
             </SwipeableViews>
           </div>
