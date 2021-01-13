@@ -13,5 +13,21 @@ let initialState: AuthState = {
 export const authSlice = createSlice({
     name:"auth",
     initialState,
-    reducers:{}
+    reducers:{
+        saveToken(state:any, {payload}: PayloadAction)  {
+            if(payload !== null){
+                state.token = payload
+            }
+        },
+        clearToken(state:any){
+            state.token = null
+        },
+        setAuthState(state:any, {payload}: PayloadAction){
+            state.isAuthenticated = payload
+        }
+    }
 })
+
+export const {saveToken, clearToken, setAuthState} = authSlice.actions
+
+export default authSlice.reducer
