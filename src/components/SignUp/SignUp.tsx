@@ -3,6 +3,7 @@ import Button from "@material-ui/core/Button";
 import {Email, VpnKey} from "@material-ui/icons";
 import TextField from '@material-ui/core/TextField';
 import Grid from "@material-ui/core/Grid";
+import AccountCircle from '@material-ui/icons/AccountCircle';
 // Styles
 import {signUpStyles} from "./Signup.style"
 
@@ -29,7 +30,7 @@ const SignUp = () => {
            <div className={classes.form_control_margin}>
                 <Grid container spacing={1} alignItems="flex-end"> 
                     <Grid item>
-                        <Email/>
+                        <AccountCircle/>
                     </Grid> 
                     <Grid item>
                         <TextField className={classes.text_field} label="Enter your Username" 
@@ -66,7 +67,7 @@ const SignUp = () => {
             <Button className={classes.login_btn}
                 variant="contained" 
                 size="large"
-                color="primary">
+                color="secondary">
                 Sign Up
             </Button>
             </Grid> 
