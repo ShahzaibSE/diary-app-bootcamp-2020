@@ -11,6 +11,13 @@ export const diarySlice = createSlice({
                 return state.findIndex((item: any)=>(item.id == diary.id)) === -1
             })
             state.push(...diariestosave)
+        },
+        updateDiary(state:any, {payload}:PayloadAction<Diary>){
+            const {id} = payload
+            const diaryIndex = state.findIndex((diary:any)=>(diary.id === id))
+            if (diaryIndex !== -1) {
+                state.splice(diaryIndex, 1, payload)
+            }
         }
     }
 })
