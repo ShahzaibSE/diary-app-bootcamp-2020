@@ -22,3 +22,7 @@ export const diarySlice = createSlice({
     }
 })
 
+export const {addDiary, updateDiary} = diarySlice.actions
+
+export default diarySlice.reducer
+
