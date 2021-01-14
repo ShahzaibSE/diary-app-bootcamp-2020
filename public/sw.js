@@ -9,6 +9,7 @@ let urlsToCache = [
     '/static/js/main.chunk.js',
     '/static/js/0.chunk.js',
     '/static/js/1.chunk.js',
+    'static/diary-office-background.jpg'
   ];
 
 console.log("Service Worker started: ",cache_name)
