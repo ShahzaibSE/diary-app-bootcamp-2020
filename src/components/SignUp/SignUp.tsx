@@ -67,8 +67,8 @@ const SignUp = () => {
         </Grid>
         <Grid container direction="column" alignContent="center" alignItems="center" justify="center">
             <Grid item sm={12} md={12} lg={12}> 
-            <Link to="/home">
-                <Button className={classes.login_btn}
+            <Link to="/home" className={classes.anchor_element}>
+                <Button className={classes.signup_btn}
                     variant="contained" 
                     size="large"
                     color="secondary">

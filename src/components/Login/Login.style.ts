@@ -11,6 +11,9 @@ export const loginStyles = makeStyles((theme: Theme) =>
             },
             text_field: {
                 minWidth: 300
+            },
+            anchor_element: {
+                textDecoration: "none",
             }
         }),
 );
