@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {FC, useState} from 'react'
 import PropTypes from 'prop-types';
 import SwipeableViews from 'react-swipeable-views';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
@@ -48,7 +48,7 @@ function a11yProps(index: any) {
     };
 }
 
-const LoginSignUpContainer = () => {
+const LoginSignUpContainer:FC = () => {
     const classes = LoginSignUpContainerStyles()
     const theme = useTheme();
     const [value, setValue] = React.useState(0);

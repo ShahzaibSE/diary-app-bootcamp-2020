@@ -5,6 +5,14 @@ import TextField from '@material-ui/core/TextField';
 import Grid from "@material-ui/core/Grid";
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import {Link} from "react-router-dom";
+// Features.
+import {userSlice} from "./../../features/auth/user.slice";
+// API.
+import {signup} from "./../../api/user.api";
+// Model.
+import {User} from "./../../models/user.interface";
+// Dispatcher.
+import {useAppDispatch} from "./../../app_store/store";
 // Styles
 import {signUpStyles} from "./Signup.style";
 // Component.
