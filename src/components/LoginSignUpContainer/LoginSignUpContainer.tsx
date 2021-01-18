@@ -7,7 +7,8 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import Grid from "@material-ui/core/Grid"
+import Grid from "@material-ui/core/Grid";
+import {BrowserRouter as Router} from "react-router-dom";
 // Styles.
 import {LoginSignUpContainerStyles} from "./LoginSignUpContainer.style"
 import Login from "./../Login/Login"; // Log In Component
@@ -63,6 +64,7 @@ const LoginSignUpContainer = () => {
     return (
        <Grid container justify="center" alignItems="center" direction="column">
         <Grid item sm={12} md={12} lg={12}>
+          <Router>
           <div className={classes.root}>
             <AppBar position="static" color="default">
               <Tabs
@@ -90,6 +92,7 @@ const LoginSignUpContainer = () => {
               </TabPanel>
             </SwipeableViews>
           </div>
+          </Router>
         </Grid>
       </Grid>
     )

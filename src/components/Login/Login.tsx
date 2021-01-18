@@ -3,8 +3,11 @@ import Button from "@material-ui/core/Button"
 import {Email, VpnKey, } from "@material-ui/icons"
 import TextField from '@material-ui/core/TextField';
 import Grid from "@material-ui/core/Grid";
+import {Link} from "react-router-dom";
 // Styles.
 import {loginStyles} from "./Login.style"
+// Component.
+import Home from "./../Home/Home";
 
 const Login = () => {
     const classes = loginStyles()
@@ -49,12 +52,14 @@ const Login = () => {
             </Grid>
             <Grid container direction="column" alignContent="center" alignItems="center" justify="center">
                 <Grid item sm={12} md={12} lg={12}> 
-                <Button className={classes.login_btn}
-                    variant="contained" 
-                    size="large"
-                    color="primary">
-                    Log In
-                </Button>
+                <Link to="/home">
+                    <Button className={classes.login_btn}
+                        variant="contained" 
+                        size="large"
+                        color="primary">
+                        Log In
+                    </Button>
+                </Link>
                 </Grid> 
             </Grid>    
         </div>

@@ -1,11 +1,14 @@
-import React, {useState} from 'react';
+import React, {useState, Suspense, lazy } from 'react';
 import Button from "@material-ui/core/Button";
 import {Email, VpnKey} from "@material-ui/icons";
 import TextField from '@material-ui/core/TextField';
 import Grid from "@material-ui/core/Grid";
 import AccountCircle from '@material-ui/icons/AccountCircle';
+import {Link} from "react-router-dom";
 // Styles
-import {signUpStyles} from "./Signup.style"
+import {signUpStyles} from "./Signup.style";
+// Component.
+import Home from "./../Home/Home";
 
 const SignUp = () => {
     const classes = signUpStyles()
@@ -64,12 +67,14 @@ const SignUp = () => {
         </Grid>
         <Grid container direction="column" alignContent="center" alignItems="center" justify="center">
             <Grid item sm={12} md={12} lg={12}> 
-            <Button className={classes.login_btn}
-                variant="contained" 
-                size="large"
-                color="secondary">
-                Sign Up
-            </Button>
+            <Link to="/home">
+                <Button className={classes.login_btn}
+                    variant="contained" 
+                    size="large"
+                    color="secondary">
+                    Sign Up
+                </Button>
+            </Link>
             </Grid> 
         </Grid>    
     </div>

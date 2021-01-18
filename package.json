@@ -19,6 +19,7 @@
     "axios": "^0.21.1",
     "crypto": "^1.0.1",
     "dayjs": "^1.9.7",
+    "history": "^5.0.0",
     "markdown-to-jsx": "^7.1.0",
     "react": "^17.0.1",
     "react-awesome-reveal": "^3.5.2",
