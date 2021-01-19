@@ -32,6 +32,9 @@ const SignUp: FC = () => {
     const [username, setUsername] = useState<String>()
     const [email, setEmail] = useState<String>()
     const [password, setPassword] = useState<String>()
+    const [isLogin, setIsLogin] = useState(true)
+    const [loading, setLoading] = useState(false)
+    const dispatch = useAppDispatch()
     // Handle Form Control.
     const handleFormField = (event: React.ChangeEvent<HTMLInputElement>, field_name: string) => {
         if (field_name === "email") {
