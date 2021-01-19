@@ -1,10 +1,12 @@
-import React, {useState, Suspense, lazy } from 'react';
+import React, {useState, FC } from 'react';
 import Button from "@material-ui/core/Button";
 import {Email, VpnKey} from "@material-ui/icons";
 import TextField from '@material-ui/core/TextField';
 import Grid from "@material-ui/core/Grid";
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import {Link} from "react-router-dom";
+import * as yup from "yup";
+import {Formik} from "formik";
 // Features.
 import {userSlice} from "./../../features/auth/user.slice";
 // API.
@@ -18,7 +20,15 @@ import {signUpStyles} from "./Signup.style";
 // Component.
 import Home from "./../Home/Home";
 
-const SignUp = () => {
+// Signup form schema.
+const login_schema = yup.object().shape({
+    username: yup.string().required('Please enter a username.')
+                    .length(16, "Username has to be 16 characters length."),
+    password: yup.string().required('Without a password, "None shall pass!"'),
+    email: yup.string().email('Please provide a valid email address (abc@xy.z)')
+})
+
+const SignUp: FC = () => {
     const classes = signUpStyles()
     const [username, setUsername] = useState<String>()
     const [email, setEmail] = useState<String>()
@@ -36,6 +46,7 @@ const SignUp = () => {
     //
     return (
     <div>
+       <form> 
         <Grid container direction="column" alignContent="center" alignItems="center" justify="center">
            <Grid item sm={12} md={12} lg={12}> 
            <div className={classes.form_control_margin}>
@@ -84,7 +95,8 @@ const SignUp = () => {
                 </Button>
             </Link>
             </Grid> 
-        </Grid>    
+        </Grid>
+       </form>     
     </div>
     )
 }

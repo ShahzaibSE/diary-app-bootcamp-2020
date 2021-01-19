@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, FC} from 'react'
 import Button from "@material-ui/core/Button"
 import {Email, VpnKey, } from "@material-ui/icons"
 import TextField from '@material-ui/core/TextField';
@@ -18,8 +18,16 @@ import {useAppDispatch} from "./../../app_store/store";
 import {loginStyles} from "./Login.style"
 // Component.
 import Home from "./../Home/Home";
+import { validateYupSchema } from 'formik';
 
-const Login = () => {
+// Login form schema.
+const login_schema = yup.object().shape({
+    username: yup.string().required('Please enter a username.')
+                    .length(16, "Username has to be 16 characters length."),
+    password: yup.string().required('Without a password, "None shall pass!"')
+})
+
+const Login: FC = () => {
     const classes = loginStyles()
     const [email, setEmail] = useState<String>('')
     const [password, setPassword] = useState<String>('')
@@ -34,6 +42,7 @@ const Login = () => {
 
     return (
         <div>
+            <form>
             <Grid container direction="column" alignContent="center" alignItems="center" justify="center">
                <Grid item sm={12} md={12} lg={12}> 
                 <div className={classes.form_control_margin}>
@@ -72,6 +81,7 @@ const Login = () => {
                 </Link>
                 </Grid> 
             </Grid>    
+            </form>
         </div>
     )
 }
