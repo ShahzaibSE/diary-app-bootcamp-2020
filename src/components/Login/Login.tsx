@@ -71,14 +71,12 @@ const Login: FC = () => {
             </Grid>
             <Grid container direction="column" alignContent="center" alignItems="center" justify="center">
                 <Grid item sm={12} md={12} lg={12}> 
-                <Link to="/home" className={classes.anchor_element}>
                     <Button className={classes.login_btn}
                         variant="contained" 
                         size="large"
                         color="primary">
                         Log In
                     </Button>
-                </Link>
                 </Grid> 
             </Grid>    
             </form>

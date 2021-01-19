@@ -4,9 +4,8 @@ import {Email, VpnKey} from "@material-ui/icons";
 import TextField from '@material-ui/core/TextField';
 import Grid from "@material-ui/core/Grid";
 import AccountCircle from '@material-ui/icons/AccountCircle';
-import {Link} from "react-router-dom";
 import * as yup from "yup";
-import {Formik} from "formik";
+import {useFormik} from "formik";
 // Features.
 import {userSlice} from "./../../features/auth/user.slice";
 // API.
@@ -43,10 +42,22 @@ const SignUp: FC = () => {
             setUsername(event.target.value)
         }
     }
+    // Formik
+    const signup_formik = useFormik({
+        initialValues: {
+            username: '',
+            password: '',
+            email: ''
+        },
+        onSubmit: () => {
+            console.log("Submitted")
+        },
+        validate:()=>{}
+    })
     //
     return (
     <div>
-       <form> 
+       <form onSubmit={signup_formik.handleSubmit}> 
         <Grid container direction="column" alignContent="center" alignItems="center" justify="center">
            <Grid item sm={12} md={12} lg={12}> 
            <div className={classes.form_control_margin}>
@@ -56,7 +67,7 @@ const SignUp: FC = () => {
                     </Grid> 
                     <Grid item>
                         <TextField className={classes.text_field} label="Enter your Username" 
-                                    onChange={(event:React.ChangeEvent<HTMLInputElement>)=>{handleFormField(event,'username')}}/>
+                                   value={signup_formik.values.username} onChange={signup_formik.handleChange}/>
                     </Grid>             
                 </Grid>
             </div>
@@ -67,7 +78,7 @@ const SignUp: FC = () => {
                     </Grid> 
                     <Grid item>
                         <TextField className={classes.text_field} label="Enter your Email" 
-                                    onChange={(event:React.ChangeEvent<HTMLInputElement>)=>{handleFormField(event,'email')}}/>
+                                    value={signup_formik.values.email} onChange={signup_formik.handleChange}/>
                     </Grid>             
                 </Grid>
             </div>
@@ -78,7 +89,7 @@ const SignUp: FC = () => {
                     </Grid> 
                     <Grid item>
                         <TextField className={classes.text_field} label="Enter your Password" type="password"
-                                    onChange={(event:React.ChangeEvent<HTMLInputElement>)=>{handleFormField(event,'password')}}/>
+                                    value={signup_formik.values.password} onChange={signup_formik.handleChange}/>
                     </Grid>             
                 </Grid>
             </div>
@@ -86,14 +97,12 @@ const SignUp: FC = () => {
         </Grid>
         <Grid container direction="column" alignContent="center" alignItems="center" justify="center">
             <Grid item sm={12} md={12} lg={12}> 
-            <Link to="/home" className={classes.anchor_element}>
                 <Button className={classes.signup_btn}
                     variant="contained" 
                     size="large"
                     color="secondary">
                     Sign Up
                 </Button>
-            </Link>
             </Grid> 
         </Grid>
        </form>     
