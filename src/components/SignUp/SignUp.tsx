@@ -7,7 +7,8 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import * as yup from "yup";
 import {useFormik} from "formik";
 // Features.
-import {userSlice} from "./../../features/auth/user.slice";
+import {setUser} from "./../../features/auth/user.slice";
+import {saveToken, setAuthState} from "./../../features/auth/auth.slice";
 // API.
 import {signup} from "./../../api/user.api";
 // Model.
@@ -45,6 +46,23 @@ const SignUp: FC = () => {
             setUsername(event.target.value)
         }
     }
+
+    const submitHandler = (data: any) => {
+        signup(data)?.then((res:any) => {
+            if (res) {
+                const {user , token} = res
+                dispatch(saveToken(token))
+                dispatch(setUser(user));
+                dispatch(setAuthState(true));
+            }
+        }).catch((err:any)=>{
+            console.log("Signup error")
+            console.log(err)
+        }).finally(()=>{
+            setLoading(false)
+        })
+    }
+
     // Formik
     const signup_formik = useFormik({
         initialValues: {
@@ -52,9 +70,7 @@ const SignUp: FC = () => {
             password: '',
             email: ''
         },
-        onSubmit: () => {
-            console.log("Submitted")
-        },
+        onSubmit: submitHandler,
         validationSchema: signup_schema
     })
     //
