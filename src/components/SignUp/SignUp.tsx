@@ -20,7 +20,7 @@ import {signUpStyles} from "./Signup.style";
 import Home from "./../Home/Home";
 
 // Signup form schema.
-const login_schema = yup.object().shape({
+const signup_schema = yup.object().shape({
     username: yup.string().required('Please enter a username.')
                     .length(16, "Username has to be 16 characters length."),
     password: yup.string().required('Without a password, "None shall pass!"'),
@@ -55,7 +55,7 @@ const SignUp: FC = () => {
         onSubmit: () => {
             console.log("Submitted")
         },
-        validate:()=>{}
+        validationSchema: signup_schema
     })
     //
     return (
