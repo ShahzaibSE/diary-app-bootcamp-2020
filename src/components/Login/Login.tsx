@@ -24,8 +24,7 @@ import { validateYupSchema } from 'formik';
 
 // Login form schema.
 const login_schema = yup.object().shape({
-    username: yup.string().required('Please enter a username.')
-                    .length(16, "Username has to be 16 characters length."),
+    username: yup.string().required('Please enter your username.'),
     password: yup.string().required('Without a password, "None shall pass!"')
 })
 

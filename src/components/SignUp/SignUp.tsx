@@ -68,12 +68,12 @@ const SignUp: FC = () => {
     // Formik
     const signup_formik = useFormik({
         initialValues: {
-            username: null,
-            password: null,
-            email: null
+            username: '',
+            password: '',
+            email: ''
         },
-        onSubmit: values => {console.log(values)},
-        validationSchema: signup_schema
+        onSubmit: handleSubmit,
+        // validationSchema: signup_schema
     })
     //
     return (
@@ -87,7 +87,8 @@ const SignUp: FC = () => {
                         <AccountCircle/>
                     </Grid> 
                     <Grid item>
-                        <TextField className={classes.text_field} label="Enter your Username" 
+                        <TextField id="username" name="username" 
+                                   type="text" className={classes.text_field} label="Enter your Username" 
                                    value={signup_formik.values.username} onChange={signup_formik.handleChange}/>
                     </Grid>             
                 </Grid>
@@ -98,7 +99,8 @@ const SignUp: FC = () => {
                         <Email/>
                     </Grid> 
                     <Grid item>
-                        <TextField className={classes.text_field} label="Enter your Email" 
+                        <TextField  id="email" name="email"
+                                    type="text" className={classes.text_field} label="Enter your Email" 
                                     value={signup_formik.values.email} onChange={signup_formik.handleChange}/>
                     </Grid>             
                 </Grid>
@@ -109,7 +111,8 @@ const SignUp: FC = () => {
                         <VpnKey/>
                     </Grid> 
                     <Grid item>
-                        <TextField className={classes.text_field} label="Enter your Password" type="password"
+                        <TextField  id="password" name="password"
+                                    className={classes.text_field} label="Enter your Password" type="password"
                                     value={signup_formik.values.password} onChange={signup_formik.handleChange}/>
                     </Grid>             
                 </Grid>
