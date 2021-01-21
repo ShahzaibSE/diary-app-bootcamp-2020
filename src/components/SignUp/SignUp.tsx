@@ -23,7 +23,7 @@ import Home from "./../Home/Home";
 // Signup form schema.
 const signup_schema = yup.object().shape({
     username: yup.string().required('Please enter a username.')
-                    .length(16, "Username has to be 16 characters length."),
+                    .length(6, "Username has to be 6 characters length."),
     password: yup.string().required('Without a password, "None shall pass!"'),
     email: yup.string().email('Please provide a valid email address (abc@xy.z)')
 })
@@ -47,7 +47,9 @@ const SignUp: FC = () => {
         }
     }
 
-    const submitHandler = (data: any) => {
+    const handleSubmit = (data: any) => {
+        console.log("Attempting to signup.")
+        console.log(data)
         signup(data)?.then((res:any) => {
             if (res) {
                 const {user , token} = res
@@ -70,13 +72,13 @@ const SignUp: FC = () => {
             password: null,
             email: null
         },
-        onSubmit: submitHandler,
+        onSubmit: values => {console.log(values)},
         validationSchema: signup_schema
     })
     //
     return (
     <div>
-       <form onSubmit={signup_formik.handleSubmit}> 
+       <form onSubmit={signup_formik.handleSubmit} autoComplete="off"> 
         <Grid container direction="column" alignContent="center" alignItems="center" justify="center">
            <Grid item sm={12} md={12} lg={12}> 
            <div className={classes.form_control_margin}>
@@ -116,7 +118,7 @@ const SignUp: FC = () => {
         </Grid>
         <Grid container direction="column" alignContent="center" alignItems="center" justify="center">
             <Grid item sm={12} md={12} lg={12}> 
-                <Button className={classes.signup_btn}
+                <Button className={classes.signup_btn} type="submit"
                     variant="contained" 
                     size="large"
                     color="secondary">
