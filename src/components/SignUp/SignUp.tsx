@@ -5,7 +5,7 @@ import TextField from '@material-ui/core/TextField';
 import Grid from "@material-ui/core/Grid";
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import * as yup from "yup";
-import {useFormik, Form} from "formik";
+import {useFormik} from "formik";
 // Features.
 import {setUser} from "./../../features/auth/user.slice";
 import {saveToken, setAuthState} from "./../../features/auth/auth.slice";
@@ -71,13 +71,8 @@ const SignUp: FC = () => {
                 setLoading(false)
                 resetForm()
             })
-        }
-        // onSubmit: (values, {resetForm})=>{
-        //     console.log("Test - Sign up form submitted.")
-        //     console.log(values)
-        //     resetForm()
-        // },
-        // validationSchema: signup_schema
+        },
+        validationSchema: signup_schema
     })
     //
     return (

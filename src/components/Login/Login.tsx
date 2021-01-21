@@ -34,80 +34,78 @@ const Login: FC = () => {
     const [email, setEmail] = useState<String>('')
     const [password, setPassword] = useState<String>('')
     const dispatch = useAppDispatch()
-    // Handle Form Control.
-    const handleFormField = (event: React.ChangeEvent<HTMLInputElement>, field_name: string) => {
-        if (field_name === "email") {
-            setEmail(event.target.value)
-        }else if (field_name === "password") {
-            setPassword(event.target.value)
-        }
-    }
-    //
-    const submitHandler = (data:any) => {
-        login(data)?.then((res:any) => {
-            if (res) {
-                const {user , token} = res
-                dispatch(saveToken(token))
-                dispatch(setUser(user));
-                dispatch(setAuthState(true));
-            }
-        }).catch((err:any)=>{
-            console.log("Signup error")
-            console.log(err)
-        }).finally(()=>{
-            setLoading(false)
-        })
-    }
     // Login formik.
     const login_formik = useFormik({
         initialValues: {
-            username: "",
-            password: ""
+            username: '',
+            password: ''
         },
-        onSubmit: submitHandler
+        // onSubmit: (data:any, {resetForm}) => {
+        //     login(data)?.then((res:any) => {
+        //         if (res) {
+        //             const {user , token} = res
+        //             dispatch(saveToken(token))
+        //             dispatch(setUser(user));
+        //             dispatch(setAuthState(true));
+        //         }
+        //     }).catch((err:any)=>{
+        //         console.log("Signup error")
+        //         console.log(err)
+        //     }).finally(()=>{
+        //         setLoading(false)
+        //         resetForm()
+        //     })
+        // },
+        onSubmit: values => {
+            console.log("Test - login credientials")
+            console.log(values)
+        },
+        validationSchema: login_schema
     })
 
     return (
         <div>
-            <form onSubmit={login_formik.handleSubmit}>
-            <Grid container direction="column" alignContent="center" alignItems="center" justify="center">
-               <Grid item sm={12} md={12} lg={12}> 
-                <div className={classes.form_control_margin}>
-                    <Grid container spacing={1} alignItems="flex-end"> 
-                        <Grid item>
-                            <Email/>
-                        </Grid> 
-                        <Grid item>
-                            <TextField className={classes.text_field} label="Enter your Email" 
-                                        onChange={login_formik.handleChange}/>
-                        </Grid>             
-                    </Grid>
-                </div>
-                <div className={classes.form_control_margin}>
-                    <Grid container spacing={1} alignItems="flex-end"> 
-                        <Grid item>
-                            <VpnKey/>
-                        </Grid> 
-                        <Grid item>
-                            <TextField className={classes.text_field} label="Enter your Password" type="password"
-                                        onChange={login_formik.handleChange}/>
-                        </Grid>             
-                    </Grid>
-                </div>
-                </Grid>
-            </Grid>
-            <Grid container direction="column" alignContent="center" alignItems="center" justify="center">
-                <Grid item sm={12} md={12} lg={12}> 
-                    <Button className={classes.login_btn}
-                        variant="contained" 
-                        size="large"
-                        color="primary">
-                        Log In
-                    </Button>
-                </Grid> 
-            </Grid>    
-            </form>
-        </div>
+        <form onSubmit={login_formik.handleSubmit} autoComplete="off"> 
+         <Grid container direction="column" alignContent="center" alignItems="center" justify="center">
+            <Grid item sm={12} md={12} lg={12}> 
+            <div className={classes.form_control_margin}>
+                 <Grid container spacing={1} alignItems="flex-end"> 
+                     <Grid item>
+                         <Email/>
+                     </Grid> 
+                     <Grid item>
+                         <TextField id="username" name="username" 
+                                    type="text" className={classes.text_field} label="Enter your username" 
+                                    value={login_formik.values.username} onChange={login_formik.handleChange}/>
+                     </Grid>             
+                 </Grid>
+             </div>
+             <div className={classes.form_control_margin}>
+                 <Grid container spacing={1} alignItems="flex-end"> 
+                     <Grid item>
+                         <VpnKey/>
+                     </Grid> 
+                     <Grid item>
+                         <TextField  id="password" name="password"
+                                     className={classes.text_field} label="Enter your Password" type="password"
+                                     value={login_formik.values.password} onChange={login_formik.handleChange}/>
+                     </Grid>             
+                 </Grid>
+             </div>
+             </Grid>
+         </Grid>
+         <Grid container direction="column" alignContent="center" alignItems="center" justify="center">
+             <Grid item sm={12} md={12} lg={12}> 
+                 <Button className={classes.login_btn} type="submit"
+                     variant="contained" 
+                     size="large"
+                     color="secondary">
+                     Sign Up
+                 </Button>
+             </Grid> 
+         </Grid>
+        </form>     
+     </div>
     )
 }
 
