@@ -5,7 +5,7 @@ import TextField from '@material-ui/core/TextField';
 import Grid from "@material-ui/core/Grid";
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import * as yup from "yup";
-import {useFormik} from "formik";
+import {useFormik, Form} from "formik";
 // Features.
 import {setUser} from "./../../features/auth/user.slice";
 import {saveToken, setAuthState} from "./../../features/auth/auth.slice";
@@ -47,28 +47,6 @@ const SignUp: FC = () => {
         }
     }
 
-    const handleReset = () => {
-
-    }
-
-    const handleSubmit = (data: any) => {
-        console.log("Attempting to signup.")
-        console.log(data)
-        signup(data)?.then((res:any) => {
-            if (res) {
-                const {user , token} = res
-                dispatch(saveToken(token))
-                dispatch(setUser(user));
-                dispatch(setAuthState(true));
-            }
-        }).catch((err:any)=>{
-            console.log("Signup error")
-            console.log(err)
-        }).finally(()=>{
-            setLoading(false)
-        })
-    }
-
     // Formik
     const signup_formik = useFormik({
         initialValues: {
@@ -76,11 +54,29 @@ const SignUp: FC = () => {
             password: '',
             email: ''
         },
-        onSubmit: (values, {resetForm})=>{
-            console.log("Test - Sign up form submitted.")
-            console.log(values)
-            resetForm()
-        },
+        onSubmit: (data, {resetForm}) => {
+            console.log("Attempting to signup.")
+            console.log(data)
+            signup(data)?.then((res:any) => {
+                if (res) {
+                    const {user , token} = res
+                    dispatch(saveToken(token))
+                    dispatch(setUser(user));
+                    dispatch(setAuthState(true));
+                }
+            }).catch((err:any)=>{
+                console.log("Signup error")
+                console.log(err)
+            }).finally(()=>{
+                setLoading(false)
+                resetForm()
+            })
+        }
+        // onSubmit: (values, {resetForm})=>{
+        //     console.log("Test - Sign up form submitted.")
+        //     console.log(values)
+        //     resetForm()
+        // },
         // validationSchema: signup_schema
     })
     //
