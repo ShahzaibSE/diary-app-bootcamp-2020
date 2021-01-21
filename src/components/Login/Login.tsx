@@ -40,26 +40,26 @@ const Login: FC = () => {
             username: '',
             password: ''
         },
-        // onSubmit: (data:any, {resetForm}) => {
-        //     login(data)?.then((res:any) => {
-        //         if (res) {
-        //             const {user , token} = res
-        //             dispatch(saveToken(token))
-        //             dispatch(setUser(user));
-        //             dispatch(setAuthState(true));
-        //         }
-        //     }).catch((err:any)=>{
-        //         console.log("Signup error")
-        //         console.log(err)
-        //     }).finally(()=>{
-        //         setLoading(false)
-        //         resetForm()
-        //     })
-        // },
-        onSubmit: values => {
-            console.log("Test - login credientials")
-            console.log(values)
+        onSubmit: (data:any, {resetForm}) => {
+            login(data)?.then((res:any) => {
+                if (res) {
+                    const {user , token} = res
+                    dispatch(saveToken(token))
+                    dispatch(setUser(user));
+                    dispatch(setAuthState(true));
+                }
+            }).catch((err:any)=>{
+                console.log("Signup error")
+                console.log(err)
+            }).finally(()=>{
+                setLoading(false)
+                resetForm()
+            })
         },
+        // onSubmit: values => {
+        //     console.log("Test - login credientials")
+        //     console.log(values)
+        // },
         validationSchema: login_schema
     })
 
