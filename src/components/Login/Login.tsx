@@ -5,9 +5,11 @@ import TextField from '@material-ui/core/TextField';
 import Grid from "@material-ui/core/Grid";
 import {Link} from "react-router-dom";
 import * as yup from "yup";
-import { useForm } from 'react-hook-form';
+import {useFormik} from "formik";
 // Features.
-import {userSlice} from "./../../features/auth/user.slice";
+// Features.
+import {setUser} from "./../../features/auth/user.slice";
+import {saveToken, setAuthState} from "./../../features/auth/auth.slice";
 // API.
 import {login} from "./../../api/user.api";
 // Model.
@@ -29,8 +31,10 @@ const login_schema = yup.object().shape({
 
 const Login: FC = () => {
     const classes = loginStyles()
+    const [loading, setLoading] = useState(false)
     const [email, setEmail] = useState<String>('')
     const [password, setPassword] = useState<String>('')
+    const dispatch = useAppDispatch()
     // Handle Form Control.
     const handleFormField = (event: React.ChangeEvent<HTMLInputElement>, field_name: string) => {
         if (field_name === "email") {
@@ -39,10 +43,34 @@ const Login: FC = () => {
             setPassword(event.target.value)
         }
     }
+    //
+    const submitHandler = (data:any) => {
+        login(data)?.then((res:any) => {
+            if (res) {
+                const {user , token} = res
+                dispatch(saveToken(token))
+                dispatch(setUser(user));
+                dispatch(setAuthState(true));
+            }
+        }).catch((err:any)=>{
+            console.log("Signup error")
+            console.log(err)
+        }).finally(()=>{
+            setLoading(false)
+        })
+    }
+    // Login formik.
+    const login_formik = useFormik({
+        initialValues: {
+            username: "",
+            password: ""
+        },
+        onSubmit: submitHandler
+    })
 
     return (
         <div>
-            <form>
+            <form onSubmit={login_formik.handleSubmit}>
             <Grid container direction="column" alignContent="center" alignItems="center" justify="center">
                <Grid item sm={12} md={12} lg={12}> 
                 <div className={classes.form_control_margin}>
