@@ -80,7 +80,7 @@ const Login: FC = () => {
                         </Grid> 
                         <Grid item>
                             <TextField className={classes.text_field} label="Enter your Email" 
-                                        onChange={(event:React.ChangeEvent<HTMLInputElement>)=>{handleFormField(event,'email')}}/>
+                                        onChange={login_formik.handleChange}/>
                         </Grid>             
                     </Grid>
                 </div>
@@ -91,7 +91,7 @@ const Login: FC = () => {
                         </Grid> 
                         <Grid item>
                             <TextField className={classes.text_field} label="Enter your Password" type="password"
-                                        onChange={(event:React.ChangeEvent<HTMLInputElement>)=>{handleFormField(event,'password')}}/>
+                                        onChange={login_formik.handleChange}/>
                         </Grid>             
                     </Grid>
                 </div>

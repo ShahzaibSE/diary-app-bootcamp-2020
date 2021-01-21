@@ -25,4 +25,4 @@ if (process.env.NODE_ENV === "development") {
   mockServer()
 }
 // Register service worker.
-sw()
+// sw()

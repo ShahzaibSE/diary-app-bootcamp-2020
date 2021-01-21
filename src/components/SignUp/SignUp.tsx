@@ -66,9 +66,9 @@ const SignUp: FC = () => {
     // Formik
     const signup_formik = useFormik({
         initialValues: {
-            username: '',
-            password: '',
-            email: ''
+            username: null,
+            password: null,
+            email: null
         },
         onSubmit: submitHandler,
         validationSchema: signup_schema
