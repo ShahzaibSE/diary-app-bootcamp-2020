@@ -47,6 +47,10 @@ const SignUp: FC = () => {
         }
     }
 
+    const handleReset = () => {
+
+    }
+
     const handleSubmit = (data: any) => {
         console.log("Attempting to signup.")
         console.log(data)
@@ -72,7 +76,11 @@ const SignUp: FC = () => {
             password: '',
             email: ''
         },
-        onSubmit: handleSubmit,
+        onSubmit: (values, {resetForm})=>{
+            console.log("Test - Sign up form submitted.")
+            console.log(values)
+            resetForm()
+        },
         // validationSchema: signup_schema
     })
     //
