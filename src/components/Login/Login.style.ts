@@ -1,4 +1,5 @@
 import  {createMuiTheme, createStyles, withStyles, makeStyles,Theme, ThemeProvider} from '@material-ui/core/styles';
+import {red} from "@material-ui/core/colors";
 
 export const loginStyles = makeStyles((theme: Theme) =>
         createStyles({
@@ -14,6 +15,9 @@ export const loginStyles = makeStyles((theme: Theme) =>
             },
             anchor_element: {
                 textDecoration: "none",
+            },
+            validation_text: {
+                color:red[700]
             }
         }),
 );

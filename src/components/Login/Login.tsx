@@ -3,7 +3,7 @@ import Button from "@material-ui/core/Button"
 import {Email, VpnKey, } from "@material-ui/icons"
 import TextField from '@material-ui/core/TextField';
 import Grid from "@material-ui/core/Grid";
-import {Link} from "react-router-dom";
+import Typography from "@material-ui/core/Typography";
 import * as yup from "yup";
 import {useFormik} from "formik";
 // Features.
@@ -40,6 +40,7 @@ const Login: FC = () => {
             username: '',
             password: ''
         },
+        validationSchema: login_schema,
         onSubmit: (data:any, {resetForm}) => {
             login(data)?.then((res:any) => {
                 if (res) {
@@ -55,12 +56,7 @@ const Login: FC = () => {
                 setLoading(false)
                 resetForm()
             })
-        },
-        // onSubmit: values => {
-        //     console.log("Test - login credientials")
-        //     console.log(values)
-        // },
-        validationSchema: login_schema
+        }
     })
 
     return (
@@ -79,6 +75,12 @@ const Login: FC = () => {
                                     value={login_formik.values.username} onChange={login_formik.handleChange}/>
                      </Grid>             
                  </Grid>
+                 {login_formik.errors.username ? <Grid container spacing={1} alignItems="flex-end">
+                    <Grid item>
+                        <Typography className={classes.validation_text} 
+                                    variant="subtitle1">Please enter username</Typography>
+                    </Grid>
+                </Grid> : null}
              </div>
              <div className={classes.form_control_margin}>
                  <Grid container spacing={1} alignItems="flex-end"> 
@@ -91,6 +93,12 @@ const Login: FC = () => {
                                      value={login_formik.values.password} onChange={login_formik.handleChange}/>
                      </Grid>             
                  </Grid>
+                 {login_formik.errors.password ? <Grid container spacing={1} alignItems="flex-end">
+                    <Grid item>
+                        <Typography className={classes.validation_text}
+                                    variant="subtitle1">Please enter password</Typography>
+                    </Grid>
+                </Grid> : null}
              </div>
              </Grid>
          </Grid>
@@ -98,9 +106,8 @@ const Login: FC = () => {
              <Grid item sm={12} md={12} lg={12}> 
                  <Button className={classes.login_btn} type="submit"
                      variant="contained" 
-                     size="large"
-                     color="secondary">
-                     Sign Up
+                     size="large" color="primary">
+                     Log In
                  </Button>
              </Grid> 
          </Grid>

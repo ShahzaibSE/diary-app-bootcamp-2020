@@ -1,4 +1,5 @@
 import  {createMuiTheme, createStyles, withStyles, makeStyles,Theme, ThemeProvider} from '@material-ui/core/styles';
+import {red} from "@material-ui/core/colors";
 
 export const signUpStyles = makeStyles((theme: Theme) => createStyles({
     form_control_margin: {
@@ -13,5 +14,8 @@ export const signUpStyles = makeStyles((theme: Theme) => createStyles({
     },
     anchor_element: {
         textDecoration: "none",
+    },
+    validation_text: {
+        color:red[700]
     }
 }))
