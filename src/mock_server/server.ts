@@ -51,6 +51,7 @@ const mockServer = function() {
             // this.get('/diaries/users',(schema:any)=>{
             //     return schema.db.users
             // })
+            this.urlPrefix = 'https://diaries.app'
             // User Routes.
             this.post("/auth/create", signUp)
             this.post("/auth/signin", login)
