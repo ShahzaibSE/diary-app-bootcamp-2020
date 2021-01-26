@@ -5,6 +5,8 @@ import TextField from '@material-ui/core/TextField';
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import AccountCircle from '@material-ui/icons/AccountCircle';
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert, { AlertProps } from '@material-ui/lab/Alert';
 import * as yup from "yup";
 import {useFormik} from "formik";
 // Features.
@@ -17,19 +19,34 @@ import {User} from "./../../models/user.interface";
 // Dispatcher.
 import {useAppDispatch} from "./../../app_store/store";
 // Styles
-import {signUpStyles} from "./Signup.style";
+import {signUpStyles, snackbarStyles} from "./Signup.style";
 // Component.
 import Home from "./../Home/Home";
 
+function Alert(props: AlertProps) {
+    return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
 
 const SignUp: FC = () => {
     const classes = signUpStyles()
-    const [username, setUsername] = useState<String>()
-    const [email, setEmail] = useState<String>()
-    const [password, setPassword] = useState<String>()
-    const [isLogin, setIsLogin] = useState(true)
+    const snackbar_classes = snackbarStyles()
+    const [open, setOpen] = useState<boolean>(false)
     const [loading, setLoading] = useState(false)
     const dispatch = useAppDispatch()
+
+    // Snackbar handlers.
+    const handleClick = () => {
+        console.log("Open snack bar.")
+        setOpen(true)
+    }
+
+    const handleClose = (event?: React.SyntheticEvent, reason?: string) => {
+        if (reason === 'clickaway') {
+          return;
+        }
+    
+        setOpen(false);
+    };
 
     // Formik
     const signup_formik = useFormik({
@@ -58,6 +75,7 @@ const SignUp: FC = () => {
                 console.log(err)
                 resetForm()
             }).finally(()=>{
+                handleClick()
                 setLoading(false)
                 resetForm()
             })
@@ -66,76 +84,86 @@ const SignUp: FC = () => {
     //
     return (
     <div>
-       <form onSubmit={signup_formik.handleSubmit} autoComplete="off"> 
-        <Grid container direction="column" alignContent="center" alignItems="center" justify="center">
-           <Grid item sm={12} md={12} lg={12}> 
-           <div className={classes.form_control_margin}>
-                <Grid container spacing={1} alignItems="flex-end"> 
-                    <Grid item>
-                        <AccountCircle/>
-                    </Grid> 
-                    <Grid item>
-                        <TextField id="username" name="username"
-                                   type="text" className={classes.text_field} label="Enter your Username" 
-                                   value={signup_formik.values.username} onChange={signup_formik.handleChange}/>
-                    </Grid>             
-                </Grid>
-                {signup_formik.errors.username ? <Grid container spacing={1} alignItems="flex-end">
-                    <Grid item>
-                        <Typography className={classes.validation_text} 
-                                    variant="subtitle1">Please enter username</Typography>
+        <div>
+            <form onSubmit={signup_formik.handleSubmit} autoComplete="off"> 
+                <Grid container direction="column" alignContent="center" alignItems="center" justify="center">
+                <Grid item sm={12} md={12} lg={12}> 
+                <div className={classes.form_control_margin}>
+                        <Grid container spacing={1} alignItems="flex-end"> 
+                            <Grid item>
+                                <AccountCircle/>
+                            </Grid> 
+                            <Grid item>
+                                <TextField id="username" name="username"
+                                        type="text" className={classes.text_field} label="Enter your Username" 
+                                        value={signup_formik.values.username} onChange={signup_formik.handleChange}/>
+                            </Grid>             
+                        </Grid>
+                        {signup_formik.errors.username ? <Grid container spacing={1} alignItems="flex-end">
+                            <Grid item>
+                                <Typography className={classes.validation_text} 
+                                            variant="subtitle1">Please enter username</Typography>
+                            </Grid>
+                        </Grid> : null}
+                    </div>
+                    <div className={classes.form_control_margin}>
+                        <Grid container spacing={1} alignItems="flex-end"> 
+                            <Grid item>
+                                <Email/>
+                            </Grid> 
+                            <Grid item>
+                                <TextField  id="email" name="email"
+                                            type="text" className={classes.text_field} label="Enter your Email" 
+                                            value={signup_formik.values.email} onChange={signup_formik.handleChange}/>
+                            </Grid>             
+                        </Grid>
+                        {signup_formik.errors.email ? <Grid container spacing={1} alignItems="flex-end">
+                            <Grid item>
+                                <Typography className={classes.validation_text}
+                                            variant="subtitle1">Please enter E-mail</Typography>
+                            </Grid>
+                        </Grid> : null}
+                    </div>
+                    <div className={classes.form_control_margin}>
+                        <Grid container spacing={1} alignItems="flex-end"> 
+                            <Grid item>
+                                <VpnKey/>
+                            </Grid> 
+                            <Grid item>
+                                <TextField  id="password" name="password"
+                                            className={classes.text_field} label="Enter your Password" type="password"
+                                            value={signup_formik.values.password} onChange={signup_formik.handleChange}/>
+                            </Grid>             
+                        </Grid>
+                        {signup_formik.errors.password ? <Grid container spacing={1} alignItems="flex-end">
+                            <Grid item>
+                                <Typography className={classes.validation_text}
+                                            variant="subtitle1">Please enter password</Typography>
+                            </Grid>
+                        </Grid> : null}
+                    </div>
                     </Grid>
-                </Grid> : null}
-            </div>
-            <div className={classes.form_control_margin}>
-                <Grid container spacing={1} alignItems="flex-end"> 
-                    <Grid item>
-                        <Email/>
-                    </Grid> 
-                    <Grid item>
-                        <TextField  id="email" name="email"
-                                    type="text" className={classes.text_field} label="Enter your Email" 
-                                    value={signup_formik.values.email} onChange={signup_formik.handleChange}/>
-                    </Grid>             
                 </Grid>
-                {signup_formik.errors.email ? <Grid container spacing={1} alignItems="flex-end">
-                    <Grid item>
-                        <Typography className={classes.validation_text}
-                                    variant="subtitle1">Please enter E-mail</Typography>
-                    </Grid>
-                </Grid> : null}
-            </div>
-            <div className={classes.form_control_margin}>
-                <Grid container spacing={1} alignItems="flex-end"> 
-                    <Grid item>
-                        <VpnKey/>
+                <Grid container direction="column" alignContent="center" alignItems="center" justify="center">
+                    <Grid item sm={12} md={12} lg={12}> 
+                        <Button className={classes.signup_btn} type="submit"
+                            variant="contained" 
+                            size="large"
+                            color="secondary">
+                            Sign Up
+                        </Button>
                     </Grid> 
-                    <Grid item>
-                        <TextField  id="password" name="password"
-                                    className={classes.text_field} label="Enter your Password" type="password"
-                                    value={signup_formik.values.password} onChange={signup_formik.handleChange}/>
-                    </Grid>             
                 </Grid>
-                {signup_formik.errors.password ? <Grid container spacing={1} alignItems="flex-end">
-                    <Grid item>
-                        <Typography className={classes.validation_text}
-                                    variant="subtitle1">Please enter password</Typography>
-                    </Grid>
-                </Grid> : null}
-            </div>
-            </Grid>
-        </Grid>
-        <Grid container direction="column" alignContent="center" alignItems="center" justify="center">
-            <Grid item sm={12} md={12} lg={12}> 
-                <Button className={classes.signup_btn} type="submit"
-                    variant="contained" 
-                    size="large"
-                    color="secondary">
-                    Sign Up
-                </Button>
-            </Grid> 
-        </Grid>
-       </form>     
+            </form>  
+       </div>
+        { 
+            open ? 
+             <div className={snackbar_classes.root}>
+                    <Alert variant="filled" severity="success">
+                            Signed up successfully! Please log in.
+                    </Alert>
+            </div> :  null
+        }
     </div>
     )
 }

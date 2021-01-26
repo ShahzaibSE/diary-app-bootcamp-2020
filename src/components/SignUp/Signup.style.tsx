@@ -19,3 +19,14 @@ export const signUpStyles = makeStyles((theme: Theme) => createStyles({
         color:red[700]
     }
 }))
+
+export const snackbarStyles = makeStyles((theme: Theme) => ({
+    root: {
+      width: '100%',
+      '& > * + *': {
+        marginTop: theme.spacing(2)
+      },
+      paddingTop: '4rem',
+      textAlign:'center',
+    },
+}));
