@@ -5,7 +5,6 @@ import TextField from '@material-ui/core/TextField';
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import AccountCircle from '@material-ui/icons/AccountCircle';
-import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert, { AlertProps } from '@material-ui/lab/Alert';
 import * as yup from "yup";
 import {useFormik} from "formik";
@@ -39,14 +38,6 @@ const SignUp: FC = () => {
         console.log("Open snack bar.")
         setOpen(true)
     }
-
-    const handleClose = (event?: React.SyntheticEvent, reason?: string) => {
-        if (reason === 'clickaway') {
-          return;
-        }
-    
-        setOpen(false);
-    };
 
     // Formik
     const signup_formik = useFormik({
