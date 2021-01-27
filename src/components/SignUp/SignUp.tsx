@@ -13,6 +13,8 @@ import {setUser} from "./../../features/auth/user.slice";
 import {saveToken, setAuthState} from "./../../features/auth/auth.slice";
 // API.
 import {signup} from "./../../api/user.api";
+import {http} from "./../../api/index.api";
+import {AuthResponse} from "./../../mock_server/server";
 // Model.
 import {User} from "./../../models/user.interface";
 // Dispatcher.
@@ -35,7 +37,6 @@ const SignUp: FC = () => {
 
     // Snackbar handlers.
     const handleClick = () => {
-        console.log("Open snack bar.")
         setOpen(true)
     }
 
@@ -51,10 +52,12 @@ const SignUp: FC = () => {
             password: yup.string().required('Without a password, "None shall pass!"'),
             email: yup.string().required().email('Please provide a valid email address (abc@xy.z)')
         }),
-        onSubmit: (data, {resetForm}) => {
+        onSubmit: async (data, {resetForm}) => {
+            const path = "/auth/create"
             console.log("Attempting to signup.")
             console.log(data)
-            signup(data)?.then((res:any) => {
+            await http
+            .post<User, AuthResponse>(path,data).then((res:any) => {
                 if (res) {
                     const {user , token} = res
                     dispatch(saveToken(token))

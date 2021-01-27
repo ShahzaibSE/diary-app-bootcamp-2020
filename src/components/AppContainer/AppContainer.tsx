@@ -10,15 +10,15 @@ const Home = lazy(()=>import("./../../components/Home/Home"));
 
 const AppContainer = () => {
     const isLoggedIn = useSelector((state:RootState)=>state.auth.isAuthenticated)
+    console.log("Auth state - AppContainer")
+    console.log(isLoggedIn)
     return (
         <div>
             <Router>
                 <Routes>
-                    <Route path="/">
-                        <Suspense fallback={<p>Loading...</p>}>
-                            {isLoggedIn ? <Home /> : <Auth />}
-                        </Suspense>
-                    </Route>
+                    <Suspense fallback={<p>Loading..</p>}>
+                        <Route path="/" element={isLoggedIn ? <Home/> : <Auth/>}></Route>
+                    </Suspense>
                 </Routes>
             </Router>
         </div>
