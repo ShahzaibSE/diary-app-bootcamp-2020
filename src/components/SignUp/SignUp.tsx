@@ -52,23 +52,23 @@ const SignUp: FC = () => {
             password: yup.string().required('Without a password, "None shall pass!"'),
             email: yup.string().required().email('Please provide a valid email address (abc@xy.z)')
         }),
-        onSubmit: async (data, {resetForm}) => {
+        onSubmit: (data, {resetForm}) => {
             const path = "/auth/create"
             console.log("Attempting to signup.")
             console.log(data)
-            await http
-            .post<User, AuthResponse>(path,data).then((res:any) => {
+            http.post<User, AuthResponse>(path,data).then((res) => {
                 if (res) {
-                    const {user , token} = res
-                    dispatch(saveToken(token))
-                    dispatch(setUser(user));
-                    dispatch(setAuthState(true));
+                  const { user, token } = res;
+                  dispatch(saveToken(token));
+                  dispatch(setUser(user));
+                  dispatch(setAuthState(true));
                 }
-            }).catch((err:any)=>{
+              }).catch((err:any)=>{
                 console.log("Signup error")
                 console.log(err)
                 resetForm()
             }).finally(()=>{
+                console.log("Cleaning up.")
                 handleClick()
                 setLoading(false)
                 resetForm()
