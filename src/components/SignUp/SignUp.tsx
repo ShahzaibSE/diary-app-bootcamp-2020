@@ -63,9 +63,6 @@ const SignUp: FC = () => {
                   const { user, token } = res;
                   dispatch(saveToken(token));
                   dispatch(setUser(user));
-                  dispatch(setAuthState(true));
-                }else {
-                    console.log("Empty response")
                 }
               }).catch((err:any)=>{
                 console.log("Signup error")
