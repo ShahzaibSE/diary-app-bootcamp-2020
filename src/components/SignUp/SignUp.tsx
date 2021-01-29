@@ -1,4 +1,5 @@
 import React, {useState, FC } from 'react';
+import {useDispatch} from "react-redux";
 import Button from "@material-ui/core/Button";
 import {Email, VpnKey} from "@material-ui/icons";
 import TextField from '@material-ui/core/TextField';
@@ -8,6 +9,7 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MuiAlert, { AlertProps } from '@material-ui/lab/Alert';
 import * as yup from "yup";
 import {useFormik} from "formik";
+import axios from "axios";
 // Features.
 import {setUser} from "./../../features/auth/user.slice";
 import {saveToken, setAuthState} from "./../../features/auth/auth.slice";
@@ -18,7 +20,7 @@ import {AuthResponse} from "./../../mock_server/server";
 // Model.
 import {User} from "./../../models/user.interface";
 // Dispatcher.
-import {useAppDispatch} from "./../../app_store/store";
+import {useAppDispatch, store} from "./../../app_store/store";
 // Styles
 import {signUpStyles, snackbarStyles} from "./Signup.style";
 // Component.
@@ -33,7 +35,7 @@ const SignUp: FC = () => {
     const snackbar_classes = snackbarStyles()
     const [open, setOpen] = useState<boolean>(false)
     const [loading, setLoading] = useState(false)
-    const dispatch = useAppDispatch()
+    const dispatch = useDispatch()
 
     // Snackbar handlers.
     const handleClick = () => {
@@ -56,12 +58,14 @@ const SignUp: FC = () => {
             const path = "/auth/create"
             console.log("Attempting to signup.")
             console.log(data)
-            http.post<User, AuthResponse>(path,data).then((res) => {
+            http.post<User, AuthResponse>(path,data).then(async (res) => {
                 if (res) {
                   const { user, token } = res;
                   dispatch(saveToken(token));
                   dispatch(setUser(user));
                   dispatch(setAuthState(true));
+                }else {
+                    console.log("Empty response")
                 }
               }).catch((err:any)=>{
                 console.log("Signup error")

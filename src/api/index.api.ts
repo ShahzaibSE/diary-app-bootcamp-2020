@@ -9,7 +9,7 @@ http.defaults.headers.post["Content-type"] = "application/json"
 
 http.interceptors.response.use(
     async(response: AxiosResponse):Promise<any> => {
-        if(response.status == 200 && response.status < 300) {
+        if(response.status == 200 || response.status == 201 && response.status < 300) {
             return response.data
         }
     },
