@@ -11,7 +11,8 @@ import {useFormik} from "formik";
 import {setUser} from "./../../features/auth/user.slice";
 import {saveToken, setAuthState} from "./../../features/auth/auth.slice";
 // API.
-import {login} from "./../../api/user.api";
+import {http} from "./../../api/index.api";
+import {AuthResponse} from "./../../mock_server/server";
 // Model.
 import {User} from "./../../models/user.interface";
 // Dispatcher.
@@ -42,7 +43,8 @@ const Login: FC = () => {
         },
         validationSchema: login_schema,
         onSubmit: (data:any, {resetForm}) => {
-            login(data)?.then((res:any) => {
+            let path:string = "/auth/signin" 
+            http.post<User, AuthResponse>(path,data).then((res:any) => {
                 if (res) {
                     const {user , token} = res
                     dispatch(saveToken(token))
@@ -50,7 +52,7 @@ const Login: FC = () => {
                     dispatch(setAuthState(true));
                 }
             }).catch((err:any)=>{
-                console.log("Signup error")
+                console.log("Login error")
                 console.log(err)
             }).finally(()=>{
                 setLoading(false)
