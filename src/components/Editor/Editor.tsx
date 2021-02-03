@@ -15,6 +15,9 @@ import {useAppDispatch} from "./../../app_store/store";
 
 
 const Editor:FC = () => {
+    const { currentlyEditing: entry, canEdit, activeDiaryId } = useSelector((state: RootState) => state.editor)
+    const [editedEntry, updateEditedEntry] = useState(entry)
+    const dispatch = useAppDispatch()
     return (
         <div>
             
