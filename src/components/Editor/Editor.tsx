@@ -42,6 +42,11 @@ const Editor:FC = () => {
         }
         dispatch(setCanEdit(false))
     }
+    //
+    useEffect(()=>{
+        updateEditedEntry(entry)
+    },[entry])
+
     return (
         <div>
             
