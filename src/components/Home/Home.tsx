@@ -1,9 +1,11 @@
-import React from 'react'
+import React from 'react';
+// Components.
+import Editor from "./../Editor/Editor";
 
 const Home = () => {
     return (
         <div>
-            <h1>Welcome Home!</h1>
+           <Editor/>
         </div>
     )
 }

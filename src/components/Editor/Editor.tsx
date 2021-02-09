@@ -1,6 +1,10 @@
 import React, {FC, useState, useEffect} from 'react';
 import {RootState} from "./../../app_store/rootReducer";
 import {useSelector} from "react-redux";
+import TextField from "@material-ui/core/TextField";
+import Card from "@material-ui/core/Card";
+import Grid from "@material-ui/core/Grid";
+import TextArea from "@material-ui/core/TextareaAutosize";
 // Models.
 import {Diary} from "./../../models/diary.interface";
 import {Entry} from "./../../models/entry.interface";
@@ -12,12 +16,18 @@ import {diarySlice, updateDiary} from "./../../features/diary/diary.slice";
 import {updateEntry} from "./../../features/entry/entry.slice";
 import {showAlert} from "./../../mock_server/utils";
 import {useAppDispatch} from "./../../app_store/store";
+// Styles.
+import {editorTextFieldStyles, editorTextAreaStyles, editorCardStyles} from "./Editor.style";
 
 
 const Editor:FC = () => {
     const { currentlyEditing: entry, canEdit, activeDiaryId } = useSelector((state: RootState) => state.editor)
     const [editedEntry, updateEditedEntry] = useState(entry)
     const dispatch = useAppDispatch()
+    // Class instances.
+    const editor_textfield_classes = editorTextFieldStyles()
+    const editor_card_classes = editorCardStyles()
+    const editor_textarea_classes = editorTextAreaStyles()
     // 
     const saveEntry = () => {
         if (activeDiaryId == null) {
@@ -48,8 +58,15 @@ const Editor:FC = () => {
     },[entry])
 
     return (
-        <div>
-            
+        <div style={{maxWidth:"60%"}}>
+            <Grid container direction="column" alignItems="center" justify="center" component={Card}>   
+                <Grid item sm={12} md={8} lg={8}>
+                    <TextField className={editor_textfield_classes.root} id="title" name="title" variant="outlined" />
+                </Grid>
+                <Grid item sm={12} md={8} lg={8}>
+                    <TextArea className={editor_textarea_classes.root} />
+                </Grid>
+            </Grid>    
         </div>
     )
 }
