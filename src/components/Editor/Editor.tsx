@@ -62,10 +62,10 @@ const Editor:FC = () => {
         <div style={{maxWidth:"60%"}}>
             <Grid container alignItems="center" justify="center" component={Card}>   
                 <Grid item sm={12} md={8} lg={8}>
-                    <TextField className={editor_textfield_classes.root} id="title" name="title" variant="outlined" />
+                    <TextField fullWidth className={editor_textfield_classes.root} id="title" name="title" variant="outlined" />
                 </Grid>
                 <Grid item sm={12} md={8} lg={8}>
-                    <TextArea className={editor_textarea_classes.root} />
+                   <TextField className={editor_textarea_classes.root} multiline fullWidth variant="outlined" rows={10}/>
                 </Grid>
             </Grid>    
         </div>
