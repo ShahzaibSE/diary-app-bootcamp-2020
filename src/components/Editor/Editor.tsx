@@ -5,6 +5,7 @@ import TextField from "@material-ui/core/TextField";
 import Card from "@material-ui/core/Card";
 import Grid from "@material-ui/core/Grid";
 import TextArea from "@material-ui/core/TextareaAutosize";
+import clsx from "clsx";
 // Models.
 import {Diary} from "./../../models/diary.interface";
 import {Entry} from "./../../models/entry.interface";
@@ -59,7 +60,7 @@ const Editor:FC = () => {
 
     return (
         <div style={{maxWidth:"60%"}}>
-            <Grid container direction="column" alignItems="center" justify="center" component={Card}>   
+            <Grid container alignItems="center" justify="center" component={Card}>   
                 <Grid item sm={12} md={8} lg={8}>
                     <TextField className={editor_textfield_classes.root} id="title" name="title" variant="outlined" />
                 </Grid>
