@@ -4,6 +4,8 @@ import {useSelector} from "react-redux";
 import TextField from "@material-ui/core/TextField";
 import Card from "@material-ui/core/Card";
 import Grid from "@material-ui/core/Grid";
+import Button from "@material-ui/core/Button";
+import SaveIcon from '@material-ui/icons/Save';
 import TextArea from "@material-ui/core/TextareaAutosize";
 import clsx from "clsx";
 // Models.
@@ -18,7 +20,7 @@ import {updateEntry} from "./../../features/entry/entry.slice";
 import {showAlert} from "./../../mock_server/utils";
 import {useAppDispatch} from "./../../app_store/store";
 // Styles.
-import {editorTextFieldStyles, editorTextAreaStyles, editorCardStyles} from "./Editor.style";
+import {editorTextFieldStyles, editorTextAreaStyles, editorSaveBtn} from "./Editor.style";
 
 
 const Editor:FC = () => {
@@ -27,8 +29,8 @@ const Editor:FC = () => {
     const dispatch = useAppDispatch()
     // Class instances.
     const editor_textfield_classes = editorTextFieldStyles()
-    const editor_card_classes = editorCardStyles()
     const editor_textarea_classes = editorTextAreaStyles()
+    const editor_savebtn_classes = editorSaveBtn()
     // 
     const saveEntry = () => {
         if (activeDiaryId == null) {
@@ -66,6 +68,15 @@ const Editor:FC = () => {
                 </Grid>
                 <Grid item sm={12} md={8} lg={8}>
                    <TextField className={editor_textarea_classes.root} multiline fullWidth variant="outlined" rows={30}/>
+                </Grid>
+                <Grid item sm={12} md={8} lg={8}>
+                    <Button variant="contained"
+                        color="primary"
+                        size="large"
+                        className={editor_savebtn_classes.button}
+                        startIcon={<SaveIcon />}>
+                        Save
+                    </Button>     
                 </Grid>
             </Grid>    
         </div>
