@@ -6,6 +6,7 @@ export const editorTextFieldStyles = makeStyles((theme: Theme) =>
             '& > *': {
               margin: theme.spacing(1),
               width: '100%',
+              marginTop: 20
             },
         },
     })
@@ -16,7 +17,8 @@ export const editorTextAreaStyles = makeStyles((theme: Theme) =>
         root: {
             '& > *': {
                 resize:"both",
-                margin: theme.spacing(1)
+                margin: theme.spacing(1),
+                marginBottom:20
             }
         }
     })

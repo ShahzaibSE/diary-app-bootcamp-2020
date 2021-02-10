@@ -65,7 +65,7 @@ const Editor:FC = () => {
                     <TextField fullWidth className={editor_textfield_classes.root} id="title" name="title" variant="outlined" />
                 </Grid>
                 <Grid item sm={12} md={8} lg={8}>
-                   <TextField className={editor_textarea_classes.root} multiline fullWidth variant="outlined" rows={10}/>
+                   <TextField className={editor_textarea_classes.root} multiline fullWidth variant="outlined" rows={30}/>
                 </Grid>
             </Grid>    
         </div>
