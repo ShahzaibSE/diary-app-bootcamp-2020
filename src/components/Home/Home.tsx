@@ -4,7 +4,7 @@ import Editor from "./../Editor/Editor";
 
 const Home = () => {
     return (
-        <div>
+        <div style={{paddingTop:5, paddingBottom:5}}>
            <Editor/>
         </div>
     )
