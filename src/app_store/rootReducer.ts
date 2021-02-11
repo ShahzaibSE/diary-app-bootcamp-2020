@@ -9,8 +9,8 @@ import editorReducer from "./../features/entry/editor.slice";
 export const rootReducer = combineReducers({
     auth: authReducer,
     user: userReducer,
-    diary: diaryReducer,
-    entry: entryReducer,
+    diaries: diaryReducer,
+    entries: entryReducer,
     editor: editorReducer
 })
 
