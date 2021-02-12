@@ -12,7 +12,7 @@ import Editor from "./../Editor/Editor";
 const Home:FC = () => {
     return (
        <Grid container>
-            <Grid item sm={12} md={8} lg={8}>
+            <Grid item sm={12} md={12} lg={12}>
                 <div style={{paddingTop:5, paddingBottom:5}}>
                     <Editor/>
                 </div>

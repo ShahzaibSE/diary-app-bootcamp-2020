@@ -36,7 +36,14 @@ const DiaryEntriesList:FC = () => {
     //
     return (
         <div className="entries">
-            
+            <header>
+                <Link to="/">Go Back</Link>
+            </header>
+            <div>
+                <ul>
+                    <li>Entry #1</li>
+                </ul>
+            </div>
         </div>
     )
 }
