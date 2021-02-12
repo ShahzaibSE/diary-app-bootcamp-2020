@@ -1,6 +1,11 @@
 import React, {FC, useEffect} from 'react';
 import {useParams, Link} from "react-router-dom";
 import {useSelector} from "react-redux";
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import Divider from "@material-ui/core/Divider"
 // Model
 import {Entry} from "./../../models/entry.interface";
 // Features.
@@ -40,9 +45,9 @@ const DiaryEntriesList:FC = () => {
                 <Link to="/">Go Back</Link>
             </header>
             <div>
-                <ul>
-                    <li>Entry #1</li>
-                </ul>
+                <List>
+
+                </List>
             </div>
         </div>
     )

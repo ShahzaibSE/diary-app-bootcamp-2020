@@ -6,6 +6,8 @@ import { addDiary } from "./../../features/diary/diary.slice";
 import {setUser} from "./../../features/auth/user.slice";
 import {useAppDispatch} from "./../../app_store/store";
 import dayjs from 'dayjs';
+import Drawer from "@material-ui/core/Drawer";
+import {Routes, Route} from "react-router-dom";
 // Components.
 import DiaryEntriesList from "./../DiaryEntriesList/DiaryEntriesList";
 // API.
