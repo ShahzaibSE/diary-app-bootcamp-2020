@@ -28,7 +28,8 @@ export const editorTextAreaStyles = makeStyles((theme: Theme) =>
 export const editorCardStyles = makeStyles((theme: Theme)=>
         createStyles({
             root: {
-                maxWidth: '50rem',
+                paddingTop: 35,
+                maxWidth: '100%'
             }
         })
 )

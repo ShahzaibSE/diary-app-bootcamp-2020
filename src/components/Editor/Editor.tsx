@@ -20,14 +20,15 @@ import {updateEntry} from "./../../features/entry/entry.slice";
 import {showAlert} from "./../../mock_server/utils";
 import {useAppDispatch} from "./../../app_store/store";
 // Styles.
-import {editorTextFieldStyles, editorTextAreaStyles, editorSaveBtn} from "./Editor.style";
+import {editorTextFieldStyles, editorTextAreaStyles, editorSaveBtn, editorCardStyles} from "./Editor.style";
 
 
 const Editor:FC = () => {
     const { currentlyEditing: entry, canEdit, activeDiaryId } = useSelector((state: RootState) => state.editor)
     const [editedEntry, updateEditedEntry] = useState(entry)
     const dispatch = useAppDispatch()
-    // Class instances.
+    // Style Class instances.
+    const editor_card_classes = editorCardStyles()
     const editor_textfield_classes = editorTextFieldStyles()
     const editor_textarea_classes = editorTextAreaStyles()
     const editor_savebtn_classes = editorSaveBtn()
@@ -62,7 +63,7 @@ const Editor:FC = () => {
 
     return (
         // <div style={{maxWidth:"60%", height:"20%"}}>
-           <div className="">
+           <div className={editor_card_classes.root}>
                 <Grid container alignItems="center" justify="center" component={Card}>   
                     <Grid item sm={12} md={8} lg={8}>
                         <TextField fullWidth className={editor_textfield_classes.root} id="title" name="title" variant="outlined" />
