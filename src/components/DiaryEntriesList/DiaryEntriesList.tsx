@@ -2,10 +2,11 @@ import React, {FC, useEffect} from 'react';
 import {useParams, Link} from "react-router-dom";
 import {useSelector} from "react-redux";
 import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
+import ListItem, {ListItemProps} from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import Divider from "@material-ui/core/Divider"
+import Divider from "@material-ui/core/Divider";
+import {Note} from "@material-ui/icons";
 // Model
 import {Entry} from "./../../models/entry.interface";
 // Features.
@@ -19,6 +20,9 @@ import {http} from "./../../api/index.api";
 // Daysjs.
 import * as dayjs from "dayjs";
 
+function ListItemLink(props: ListItemProps<'a', { button?: true }>) {
+    return <ListItem button component="a" {...props} />;
+}
 
 const DiaryEntriesList:FC = () => {
     const {entries} = useSelector((state: RootState) => state)
@@ -45,8 +49,11 @@ const DiaryEntriesList:FC = () => {
                 <Link to="/">Go Back</Link>
             </header>
             <div>
-                <List>
-
+                <List component="nav" aria-label="diary entries list">
+                    <ListItem>
+                        <ListItemIcon><Note/></ListItemIcon>
+                        <ListItemText primary="Entry #1" />
+                    </ListItem>
                 </List>
             </div>
         </div>
