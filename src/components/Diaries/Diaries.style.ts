@@ -1,6 +1,6 @@
 import { makeStyles, useTheme, Theme, createStyles } from '@material-ui/core/styles';
 
-const drawerWidth = 240;
+const drawerWidth = 380;
 
 export const diaryDrawerStyles =  makeStyles((theme: Theme) =>
         createStyles({
@@ -17,7 +17,11 @@ export const diaryDrawerStyles =  makeStyles((theme: Theme) =>
                 [theme.breakpoints.up('sm')]: {
                     width: `calc(100% - ${drawerWidth}px)`,
                     marginLeft: drawerWidth,
-                },
+                }
+            },
+            appBar_text: {
+                paddingLeft: "inherit",
+                fontWeight:"bold"
             },
             menuButton: {
                     marginRight: theme.spacing(2),
