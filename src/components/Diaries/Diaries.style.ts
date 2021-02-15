@@ -32,7 +32,8 @@ export const diaryDrawerStyles =  makeStyles((theme: Theme) =>
             },
             content: {
                 flexGrow: 1,
-                padding: theme.spacing(3)
+                padding: theme.spacing(3),
+                transform: "scale(0.95)"
             },
         }),
 );

@@ -5,7 +5,7 @@ export const editorTextFieldStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
             '& > *': {
-              margin: theme.spacing(1),
+              margin: theme.spacing(1, 'auto'),
               width: '100%',
               marginTop: 20
             },
@@ -18,7 +18,7 @@ export const editorTextAreaStyles = makeStyles((theme: Theme) =>
         root: {
             '& > *': {
                 resize:"both",
-                margin: theme.spacing(1),
+                margin: theme.spacing(1, 'auto'),
                 marginBottom:20
             }
         }
@@ -37,8 +37,8 @@ export const editorCardStyles = makeStyles((theme: Theme)=>
 export const editorSaveBtn = makeStyles((theme: Theme) =>
         createStyles({
             button: {
-            margin: theme.spacing(1),
-            width:"100%"
+                margin: theme.spacing(1, 'auto'),
+                width:"100%"
             },
         }),
 )

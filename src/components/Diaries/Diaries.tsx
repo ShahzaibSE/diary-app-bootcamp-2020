@@ -154,7 +154,7 @@ const Diaries:FC<Props> = (props: Props) => {
                       <MenuIcon />
                     </IconButton>
                     <Typography variant="h6" noWrap>
-                      Responsive drawer
+                      Entry #1
                     </Typography>
                   </Toolbar>
                 </AppBar>
