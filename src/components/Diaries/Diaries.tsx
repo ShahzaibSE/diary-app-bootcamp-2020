@@ -21,6 +21,7 @@ import { useTheme, Theme } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import {AppBar, Icon, Toolbar, Typography} from "@material-ui/core";
 import Button from "@material-ui/core/Button";
+import Grid from "@material-ui/core/Grid";
 import {Add} from "@material-ui/icons";
 import {Routes, Route} from "react-router-dom";
 // Components.
@@ -32,7 +33,7 @@ import {http} from "./../../api/index.api";
 import {Diary} from "./../../models/diary.interface";
 import {User} from "./../../models/user.interface";
 // Styles 
-import {diaryDrawerStyles, createDiaryBtnStyles} from "./Diaries.style";
+import {diaryDrawerStyles, createDiaryBtnStyles, createDiaryBtnContainerStyles} from "./Diaries.style";
 
 
 interface Props {
@@ -44,6 +45,7 @@ const Diaries:FC<Props> = (props: Props) => {
     // Styles Classes
     const diaryDrawerClasses = diaryDrawerStyles()
     const diaryCreateBtnClasses = createDiaryBtnStyles()
+    const diaryCreateBtnContainerClasses = createDiaryBtnContainerStyles()
     //
     const theme = useTheme()
     const dispatch = useAppDispatch()
@@ -119,13 +121,16 @@ const Diaries:FC<Props> = (props: Props) => {
     //
     const drawer = (
       <div>
-        <div className={diaryDrawerClasses.toolbar} />
-          <header>
-            <div className="create-diary">
+        {/* Grid for create button  */}
+        <Grid container direction="column" alignItems="center" justify="center">
+          <Grid item sm={12} md={12} lg={12}>
+            <div className={diaryCreateBtnContainerClasses.root}>
               <Button className={diaryCreateBtnClasses.button} variant="contained" color="primary" 
                       size="large" endIcon={<Add/>}> Create Diary </Button>
             </div>
-          </header>
+          </Grid>  
+        </Grid>    
+
         <Divider />
         <List>
           {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (

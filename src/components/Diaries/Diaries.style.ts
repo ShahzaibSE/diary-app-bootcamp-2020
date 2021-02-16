@@ -42,6 +42,14 @@ export const diaryDrawerStyles =  makeStyles((theme: Theme) =>
         }),
 );
 
+export const createDiaryBtnContainerStyles = makeStyles((theme: Theme)=>
+        createStyles({
+            root:{
+                width:"100%"
+            }
+        })
+)
+
 export const createDiaryBtnStyles = makeStyles((theme: Theme)=>
         createStyles({
                 button: {
