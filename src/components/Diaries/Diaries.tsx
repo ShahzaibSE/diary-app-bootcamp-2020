@@ -19,7 +19,9 @@ import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MenuIcon from "@material-ui/icons/Menu";
 import { useTheme, Theme } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import {AppBar, Toolbar, Typography} from "@material-ui/core";
+import {AppBar, Icon, Toolbar, Typography} from "@material-ui/core";
+import Button from "@material-ui/core/Button";
+import {Add} from "@material-ui/icons";
 import {Routes, Route} from "react-router-dom";
 // Components.
 import DiaryEntriesList from "./../DiaryEntriesList/DiaryEntriesList";
@@ -30,7 +32,7 @@ import {http} from "./../../api/index.api";
 import {Diary} from "./../../models/diary.interface";
 import {User} from "./../../models/user.interface";
 // Styles 
-import {diaryDrawerStyles} from "./Diaries.style";
+import {diaryDrawerStyles, createDiaryBtnStyles} from "./Diaries.style";
 
 
 interface Props {
@@ -39,7 +41,10 @@ interface Props {
 
 const Diaries:FC<Props> = (props: Props) => {
     const { windows } = props
+    // Styles Classes
     const diaryDrawerClasses = diaryDrawerStyles()
+    const diaryCreateBtnClasses = createDiaryBtnStyles()
+    //
     const theme = useTheme()
     const dispatch = useAppDispatch()
     const {diaries} = useSelector((state: RootState)=>state)
@@ -115,6 +120,12 @@ const Diaries:FC<Props> = (props: Props) => {
     const drawer = (
       <div>
         <div className={diaryDrawerClasses.toolbar} />
+          <header>
+            <div className="create-diary">
+              <Button className={diaryCreateBtnClasses.button} variant="contained" color="primary" 
+                      size="large" endIcon={<Add/>}> Create Diary </Button>
+            </div>
+          </header>
         <Divider />
         <List>
           {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (

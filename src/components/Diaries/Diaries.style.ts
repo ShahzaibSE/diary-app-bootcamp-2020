@@ -41,3 +41,12 @@ export const diaryDrawerStyles =  makeStyles((theme: Theme) =>
             },
         }),
 );
+
+export const createDiaryBtnStyles = makeStyles((theme: Theme)=>
+        createStyles({
+                button: {
+                    margin: theme.spacing(1),
+                    fontWeight: 'bold'
+                }
+        })
+)
