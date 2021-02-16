@@ -1,4 +1,5 @@
 import { makeStyles, useTheme, Theme, createStyles } from '@material-ui/core/styles';
+import { teal } from "@material-ui/core/colors";
 
 const drawerWidth = 380;
 
@@ -54,7 +55,9 @@ export const createDiaryBtnStyles = makeStyles((theme: Theme)=>
         createStyles({
                 button: {
                     margin: theme.spacing(1),
-                    fontWeight: 'bold'
+                    fontWeight: 'bold',
+                    width: "100%",
+                    backgroundColor: teal[300]
                 }
         })
 )

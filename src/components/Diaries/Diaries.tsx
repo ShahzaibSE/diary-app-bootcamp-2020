@@ -124,10 +124,10 @@ const Diaries:FC<Props> = (props: Props) => {
         {/* Grid for create button  */}
         <Grid container direction="column" alignItems="center" justify="center">
           <Grid item sm={12} md={12} lg={12}>
-            <div className={diaryCreateBtnContainerClasses.root}>
+            {/* <div className={diaryCreateBtnContainerClasses.root}> */}
               <Button className={diaryCreateBtnClasses.button} variant="contained" color="primary" 
                       size="large" endIcon={<Add/>}> Create Diary </Button>
-            </div>
+            {/* </div> */}
           </Grid>  
         </Grid>    
 
