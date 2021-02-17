@@ -127,7 +127,7 @@ const Diaries:FC<Props> = (props: Props) => {
               {/* <div className={diaryCreateBtnContainerClasses.root}> */}
               <Route path="/">
                 <Button className={diaryCreateBtnClasses.button} variant="contained" color="primary"
-                        size="large" endIcon={<Add/>}> Create Diary </Button>
+                        size="large" endIcon={<Add/>} onClick={createDiary} > Create Diary </Button>
               </Route>          
               {/* </div> */}
             </Grid>  
