@@ -22,6 +22,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import {AppBar, Icon, Toolbar, Typography} from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
+import { teal } from "@material-ui/core/colors";
 import {Add} from "@material-ui/icons";
 import {Routes, Route} from "react-router-dom";
 // Components.
@@ -121,26 +122,31 @@ const Diaries:FC<Props> = (props: Props) => {
     //
     const drawer = (
       <div>
+        <Routes>
         {/* Grid for create button  */}
-        <Grid container direction="column" alignItems="center" justify="center">
-          <Grid item sm={12} md={12} lg={12}>
-            {/* <div className={diaryCreateBtnContainerClasses.root}> */}
-              <Button className={diaryCreateBtnClasses.button} variant="contained" color="primary" 
-                      size="large" endIcon={<Add/>}> Create Diary </Button>
-            {/* </div> */}
-          </Grid>  
-        </Grid>    
+          <Grid container direction="column" alignItems="center" justify="center">
+            <Grid item sm={12} md={12} lg={12}>
+              {/* <div className={diaryCreateBtnContainerClasses.root}> */}
+              <Route path="/">
+                <Button className={diaryCreateBtnClasses.button} variant="contained" color="primary"
+                        size="large" endIcon={<Add/>}> Create Diary </Button>
+              </Route>          
+              {/* </div> */}
+            </Grid>  
+          </Grid>    
 
-        <Divider />
-        <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-        <Divider />
+          <Divider />
+              <Route path="/diary/:id"><DiaryEntriesList/></Route>
+          {/* <List>
+            {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+              <ListItem button key={text}>
+                <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+                <ListItemText primary={text} />
+              </ListItem>
+            ))}
+          </List> */}
+          <Divider />
+        </Routes>
       </div>
     );
     //

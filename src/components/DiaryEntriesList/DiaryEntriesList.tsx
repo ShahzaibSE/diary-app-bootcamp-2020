@@ -50,10 +50,12 @@ const DiaryEntriesList:FC = () => {
             </header>
             <div>
                 <List component="nav" aria-label="diary entries list">
-                    <ListItem>
-                        <ListItemIcon><Note/></ListItemIcon>
-                        <ListItemText primary="Entry #1" />
-                    </ListItem>
+                    <Divider/>
+                        <ListItem>
+                            <ListItemIcon><Note/></ListItemIcon>
+                            <ListItemText primary="Entry #1" />
+                        </ListItem>
+                    <Divider/>
                 </List>
             </div>
         </div>
