@@ -6,23 +6,20 @@ import { addDiary } from "./../../features/diary/diary.slice";
 import {setUser} from "./../../features/auth/user.slice";
 import {useAppDispatch} from "./../../app_store/store";
 import dayjs from 'dayjs';
-import List from '@material-ui/core/List';
-import ListItem, {ListItemProps} from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
 import Divider from "@material-ui/core/Divider";
 import Drawer from "@material-ui/core/Drawer";
 import Hidden from '@material-ui/core/Hidden';
 import IconButton from '@material-ui/core/IconButton';
 import MailIcon from '@material-ui/icons/Mail';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
+import ExitToApp from "@material-ui/icons/ExitToApp";
 import MenuIcon from "@material-ui/icons/Menu";
 import { useTheme, Theme } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import {AppBar, Icon, Toolbar, Typography} from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
-import { teal } from "@material-ui/core/colors";
+import Tooltip from "@material-ui/core/Tooltip";
 import {Add} from "@material-ui/icons";
 import {Routes, Route} from "react-router-dom";
 // Components.
@@ -34,7 +31,7 @@ import {http} from "./../../api/index.api";
 import {Diary} from "./../../models/diary.interface";
 import {User} from "./../../models/user.interface";
 // Styles 
-import {diaryDrawerStyles, createDiaryBtnStyles, createDiaryBtnContainerStyles} from "./Diaries.style";
+import {diaryDrawerStyles, createDiaryBtnStyles, createDiaryBtnContainerStyles, drawerAppBarStyles} from "./Diaries.style";
 
 
 interface Props {
@@ -47,6 +44,7 @@ const Diaries:FC<Props> = (props: Props) => {
     const diaryDrawerClasses = diaryDrawerStyles()
     const diaryCreateBtnClasses = createDiaryBtnStyles()
     const diaryCreateBtnContainerClasses = createDiaryBtnContainerStyles()
+    const diaryAppBarClasses = drawerAppBarStyles()
     //
     const theme = useTheme()
     const dispatch = useAppDispatch()
@@ -170,6 +168,12 @@ const Diaries:FC<Props> = (props: Props) => {
                     <Typography variant="h6" className={diaryDrawerClasses.appBar_text}>
                       Entry #1
                     </Typography>
+
+                    <Tooltip title="Log Out" aria-label="Log Out">
+                      <IconButton className={diaryDrawerClasses.log_out_btn}>
+                        <ExitToApp/>
+                      </IconButton>
+                    </Tooltip>  
                   </Toolbar>
                 </AppBar>
                 <nav className={diaryDrawerClasses.drawer} aria-label="mailbox folders">

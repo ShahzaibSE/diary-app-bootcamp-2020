@@ -3,7 +3,7 @@ import Swal, { SweetAlertIcon } from 'sweetalert2';
 export const showAlert = (titleText = 'Something happened.', alertType?: SweetAlertIcon): void => {
   Swal.fire({
     titleText,
-    position: 'top-end',
+    position: 'bottom-end',
     timer: 3000,
     timerProgressBar: true,
     toast: true,
