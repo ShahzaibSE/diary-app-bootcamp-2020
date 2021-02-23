@@ -20,9 +20,19 @@ interface Props {
 
 const DiaryTile:FC<Props>  = (props) => {
     const [diary, setDiary] = useState(props.diary)
-    const [editing, isEditing] = useState(false)
+    const [editing, setIsEditing] = useState(false)
     const dispatch = useAppDispatch()
     const totalEntries = props.diary?.entryIds?.length
+    //
+    const saveCreate = http.put<Diary, Diary>(`/diaries/${diary.id}`, diary)
+        .then(diary => {
+            if (diary) {
+                dispatch(updateDiary(diary))
+                showAlert('Saved!', 'success');
+            }
+        }).finally(()=>{
+            setIsEditing(false)
+        })
     //
     return (
         <div className="diary-tile">
