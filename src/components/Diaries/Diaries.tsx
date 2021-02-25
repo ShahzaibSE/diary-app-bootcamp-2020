@@ -130,11 +130,14 @@ const Diaries:FC<Props> = (props: Props) => {
               {/* <Route path="/diary/:id"></Route>     */}
               <Route path="/">
                 <Button className={diaryCreateBtnClasses.button} variant="contained" color="primary"
-                        size="large" endIcon={<Add/>} onClick={createDiary} > Create Diary </Button>
-                {/* <DiaryTile diary={{title:'First Diary', type:'public', entryIds:[]}}/>        */}
+                            size="large" endIcon={<Add/>} onClick={createDiary} > Create Diary </Button>
               </Route>          
+    
               {/* </div> */}
             </Grid>  
+            <Grid sm={12} md={12} lg={12}>
+              <DiaryTile diary={{title:'First Diary', type:'public', entryIds:[]}}/>   
+            </Grid>
           </Grid>    
 
           <Divider />
