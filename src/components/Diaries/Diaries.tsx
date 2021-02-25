@@ -25,6 +25,7 @@ import {Routes, Route} from "react-router-dom";
 // Components.
 import DiaryEntriesList from "./../DiaryEntriesList/DiaryEntriesList";
 import Editor from "./../Editor/Editor";
+import DiaryTile from "./../DiaryTile/DiaryTile";
 // API.
 import {http} from "./../../api/index.api";
 // Model.
@@ -125,9 +126,12 @@ const Diaries:FC<Props> = (props: Props) => {
           <Grid container direction="column" alignItems="center" justify="center">
             <Grid item sm={12} md={12} lg={12}>
               {/* <div className={diaryCreateBtnContainerClasses.root}> */}
+              {/* <DiaryTile diary={{title:'First Diary', type:'public', entryIds:[]}}/>    */}
+              {/* <Route path="/diary/:id"></Route>     */}
               <Route path="/">
                 <Button className={diaryCreateBtnClasses.button} variant="contained" color="primary"
                         size="large" endIcon={<Add/>} onClick={createDiary} > Create Diary </Button>
+                {/* <DiaryTile diary={{title:'First Diary', type:'public', entryIds:[]}}/>        */}
               </Route>          
               {/* </div> */}
             </Grid>  
@@ -176,7 +180,7 @@ const Diaries:FC<Props> = (props: Props) => {
                     </Tooltip>  
                   </Toolbar>
                 </AppBar>
-                <nav className={diaryDrawerClasses.drawer} aria-label="mailbox folders">
+                <nav className={diaryDrawerClasses.drawer} aria-label="diary-entries-list">
                   {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
                   <Hidden smUp implementation="css">
                     <Drawer

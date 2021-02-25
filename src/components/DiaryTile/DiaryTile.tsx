@@ -2,18 +2,19 @@ import React, {FC, useState, useEffect} from 'react';
 import {Link} from "react-router-dom";
 import Paper from '@material-ui/core/Paper';
 import {AnimationWrapper} from "react-hover-animation";
+import Typography from "@material-ui/core/Typography";
 // Model.
-import {Diary} from "./../../models/diary.interface";
+import {Diary} from "../../models/diary.interface";
 // Features.
-import {updateDiary} from "./../../features/diary/diary.slice";
-import {setCanEdit, setCurrentlyEditing, setActiveDiaryId} from "./../../features/entry/editor.slice";
+import {updateDiary} from "../../features/diary/diary.slice";
+import {setCanEdit, setCurrentlyEditing, setActiveDiaryId} from "../../features/entry/editor.slice";
 // Store
-import {useAppDispatch} from "./../../app_store/store";
+import {useAppDispatch} from "../../app_store/store";
 // API
-import {http} from "./../../api/index.api";
+import {http} from "../../api/index.api";
 // Utilities
 import * as dayjs from "dayjs";
-import {showAlert} from "./../../mock_server/utils";
+import {showAlert} from "../../mock_server/utils";
 // Styles
 import {diaryTitlePaperStyles} from "./DiaryTile.style";
 
@@ -46,8 +47,9 @@ const DiaryTile:FC<Props>  = (props) => {
             opacity: {initial:'1',onHover:'1'}
         }}>   
             <Paper className={diarytile_paper_classes.root}>
-                {isEditing ? <div></div> 
-                : <div></div>}
+                <Typography variant="h2">Click to Edit</Typography>
+                {/* {isEditing ? <div></div> 
+                : <div></div>} */}
             </Paper>
         </AnimationWrapper>
     )
