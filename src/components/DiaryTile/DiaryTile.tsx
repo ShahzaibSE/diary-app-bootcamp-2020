@@ -3,6 +3,7 @@ import {Link} from "react-router-dom";
 import Paper from '@material-ui/core/Paper';
 import {AnimationWrapper} from "react-hover-animation";
 import Typography from "@material-ui/core/Typography";
+import Divider from "@material-ui/core/Divider";
 // Model.
 import {Diary} from "../../models/diary.interface";
 // Features.
@@ -42,16 +43,19 @@ const DiaryTile:FC<Props>  = (props) => {
         })
     //
     return (
-        <AnimationWrapper config={{
-            transform:{initial:'scale(1)',onHover:'scale(1.1)'},
-            opacity: {initial:'1',onHover:'1'}
-        }}>   
-            <Paper className={diarytile_paper_classes.root}>
-                <Typography variant="h2">Click to Edit</Typography>
-                {/* {isEditing ? <div></div> 
-                : <div></div>} */}
-            </Paper>
-        </AnimationWrapper>
+        <div>
+            <AnimationWrapper config={{
+                transform:{initial:'scale(1)',onHover:'scale(1.1)'},
+                opacity: {initial:'1',onHover:'1'}
+            }}>   
+                <Paper className={diarytile_paper_classes.root}>
+                    <Typography variant="h2">Click to Edit</Typography>
+                    {/* {isEditing ? <div></div> 
+                    : <div></div>} */}
+                </Paper>
+            </AnimationWrapper>
+            <Divider/>
+        </div>
     )
 }
 
