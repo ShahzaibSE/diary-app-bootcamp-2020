@@ -4,6 +4,7 @@ import Paper from '@material-ui/core/Paper';
 import {AnimationWrapper} from "react-hover-animation";
 import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
+import TextField from "@material-ui/core/TextField";
 // Model.
 import {Diary} from "../../models/diary.interface";
 // Features.
@@ -17,7 +18,7 @@ import {http} from "../../api/index.api";
 import * as dayjs from "dayjs";
 import {showAlert} from "../../mock_server/utils";
 // Styles
-import {diaryTitlePaperStyles} from "./DiaryTile.style";
+import {diaryTilePaperStyles} from "./DiaryTile.style";
 
 interface Props {
     diary: Diary
@@ -30,7 +31,7 @@ const DiaryTile:FC<Props>  = (props) => {
     const dispatch = useAppDispatch()
     const totalEntries = props.diary?.entryIds?.length
     // Classes.
-    const diarytile_paper_classes = diaryTitlePaperStyles()
+    const diarytile_paper_classes = diaryTilePaperStyles()
     //
     const saveCreate = http.put<Diary, Diary>(`/diaries/${diary.id}`, diary)
         .then(diary => {
@@ -49,9 +50,9 @@ const DiaryTile:FC<Props>  = (props) => {
                 opacity: {initial:'1',onHover:'1'}
             }}>   
                 <Paper className={diarytile_paper_classes.root}>
-                    <Typography variant="h2">Click to Edit</Typography>
-                    {/* {isEditing ? <div></div> 
-                    : <div></div>} */}
+                    <Typography variant="h3" title="Click to Edit" onClick={()=>{setIsEditing(true)}} style={{cursor:"pointer"}}>
+                        {isEditing ? <span></span> : <span></span> }
+                    </Typography>
                 </Paper>
             </AnimationWrapper>
             <Divider/>
