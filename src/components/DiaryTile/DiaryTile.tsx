@@ -33,15 +33,17 @@ const DiaryTile:FC<Props>  = (props) => {
     // Classes.
     const diarytile_paper_classes = diaryTilePaperStyles()
     //
-    const saveCreate = http.put<Diary, Diary>(`/diaries/${diary.id}`, diary)
-        .then(diary => {
-            if (diary) {
-                dispatch(updateDiary(diary))
-                showAlert('Saved!', 'success');
-            }
-        }).finally(()=>{
-            setIsEditing(false)
-        })
+    const saveCreate = () => {
+        http.put<Diary, Diary>(`/diaries/${diary.id}`, diary)
+            .then(diary => {
+                if (diary) {
+                    dispatch(updateDiary(diary))
+                    showAlert('Saved!', 'success');
+                }
+            }).finally(()=>{
+                setIsEditing(false)
+            })
+    }
     //
     return (
         <div>
@@ -51,7 +53,13 @@ const DiaryTile:FC<Props>  = (props) => {
             }}>   
                 <Paper className={diarytile_paper_classes.root}>
                     <Typography variant="h3" title="Click to Edit" onClick={()=>{setIsEditing(true)}} style={{cursor:"pointer"}}>
-                        {isEditing ? <span></span> : <span></span> }
+                        {isEditing ? <TextField value={diary.title} onChange={(e)=>{
+                            setDiary({...diary, title:diary.title})}} onKeyUp={(e)=>{
+                                if(e.key == "Enter") {
+                                    saveCreate()
+                                } 
+                            }} variant="outlined"/> : 
+                                    <span>{diary.title}</span> }
                     </Typography>
                 </Paper>
             </AnimationWrapper>
