@@ -61,6 +61,7 @@ const DiaryTile:FC<Props>  = (props) => {
                             }} variant="outlined"/> : 
                                     <span>{diary.title}</span> }
                     </Typography>
+                    <Typography variant="subtitle1" noWrap={true} variantMapping={{subtitle1:'p'}}></Typography>
                 </Paper>
             </AnimationWrapper>
             <Divider/>
