@@ -4,15 +4,17 @@ export const diaryTilePaperStyles = makeStyles((theme: Theme)=>(
     createStyles({
         root: {
             display: "flex",
-            flexWrap: "wrap"
+            flexWrap: "wrap",
+            minWidth: "100%"
         }
     }))
 )
 
-export const diaryTiteTitle = makeStyles((theme: Theme)=>(
+export const diaryTileTotalEntries = makeStyles((theme: Theme)=>(
     createStyles({
         textConfig: {
             // fontSize: 14
+            display:'block'
         }        
     }))
 )

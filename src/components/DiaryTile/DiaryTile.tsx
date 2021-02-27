@@ -18,7 +18,7 @@ import {http} from "../../api/index.api";
 import * as dayjs from "dayjs";
 import {showAlert} from "../../mock_server/utils";
 // Styles
-import {diaryTilePaperStyles, diaryTiteTitle} from "./DiaryTile.style";
+import {diaryTilePaperStyles, diaryTileTotalEntries} from "./DiaryTile.style";
 
 interface Props {
     diary: Diary
@@ -32,7 +32,7 @@ const DiaryTile:FC<Props>  = (props) => {
     const totalEntries = props.diary?.entryIds?.length
     // Classes.
     const diarytile_paper_classes = diaryTilePaperStyles()
-    const diaryTile_title_classes = diaryTiteTitle()
+    const diaryTile_title_total_entries_classes = diaryTileTotalEntries()
     //
     const saveCreate = () => {
         http.put<Diary, Diary>(`/diaries/${diary.id}`, diary)
@@ -63,7 +63,10 @@ const DiaryTile:FC<Props>  = (props) => {
                                     }} variant="outlined"/> : 
                                     <span>{diary.title}</span> }
                     </Typography>
-                    <Typography variant="subtitle1" noWrap={false} variantMapping={{subtitle1:'p'}}></Typography>
+                    <Typography className={diaryTile_title_total_entries_classes.textConfig} 
+                                variant="subtitle1" noWrap={false} variantMapping={{subtitle1:'p'}}>
+                        {totalEntries ?? 0} Saved Entries
+                    </Typography>
                 </Paper>
             </AnimationWrapper>
             <Divider/>
