@@ -18,7 +18,7 @@ import {http} from "../../api/index.api";
 import * as dayjs from "dayjs";
 import {showAlert} from "../../mock_server/utils";
 // Styles
-import {diaryTilePaperStyles, diaryTileTotalEntries} from "./DiaryTile.style";
+import {diaryTilePaperStyles, diaryTileTotalEntries, diaryTileTitleStyles} from "./DiaryTile.style";
 
 interface Props {
     diary: Diary
@@ -32,7 +32,8 @@ const DiaryTile:FC<Props>  = (props) => {
     const totalEntries = props.diary?.entryIds?.length
     // Classes.
     const diarytile_paper_classes = diaryTilePaperStyles()
-    const diaryTile_title_total_entries_classes = diaryTileTotalEntries()
+    const diaryTile_total_entries_classes = diaryTileTotalEntries()
+    const diaryTile_title_classes = diaryTileTitleStyles()
     //
     const saveCreate = () => {
         http.put<Diary, Diary>(`/diaries/${diary.id}`, diary)
@@ -52,8 +53,9 @@ const DiaryTile:FC<Props>  = (props) => {
                 transform:{initial:'scale(1)',onHover:'scale(1.1)'},
                 opacity: {initial:'1',onHover:'1'}
             }}>   
-                <Paper className={diarytile_paper_classes.root}>
-                    <Typography variant="h4" title="Click to Edit" onClick={()=>{setIsEditing(true)}} style={{cursor:"pointer"}}>
+                <Paper className={diarytile_paper_classes.root} variant="outlined">
+                    <Typography className={diaryTile_title_classes.root} 
+                                variant="h4" title="Click to Edit" onClick={()=>{setIsEditing(true)}} style={{cursor:"pointer"}}>
                         {isEditing ? 
                             <TextField value={diary.title} onChange={(e)=>{
                                     setDiary({...diary, title:diary.title})}} onKeyUp={(e)=>{
@@ -63,7 +65,7 @@ const DiaryTile:FC<Props>  = (props) => {
                                     }} variant="outlined"/> : 
                                     <span>{diary.title}</span> }
                     </Typography>
-                    <Typography className={diaryTile_title_total_entries_classes.textConfig} 
+                    <Typography className={diaryTile_total_entries_classes.textConfig} 
                                 variant="subtitle1" noWrap={false} variantMapping={{subtitle1:'p'}}>
                         {totalEntries ?? 0} Saved Entries
                     </Typography>

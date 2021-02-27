@@ -5,10 +5,23 @@ export const diaryTilePaperStyles = makeStyles((theme: Theme)=>(
         root: {
             display: "flex",
             flexWrap: "wrap",
-            minWidth: "100%"
+            minWidth: "100%",
+            marginTop: 20
         }
     }))
 )
+
+export const diaryTileTitleStyles = makeStyles((theme: Theme)=>(
+    createStyles({
+        root: {
+            paddingLeft: 20,
+            paddingRight: 20,
+            textAlign: "center",
+            width: "100%"
+        }
+    }))
+)
+
 
 export const diaryTileTotalEntries = makeStyles((theme: Theme)=>(
     createStyles({
