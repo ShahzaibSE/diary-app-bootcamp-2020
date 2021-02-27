@@ -18,7 +18,7 @@ import {http} from "../../api/index.api";
 import * as dayjs from "dayjs";
 import {showAlert} from "../../mock_server/utils";
 // Styles
-import {diaryTilePaperStyles} from "./DiaryTile.style";
+import {diaryTilePaperStyles, diaryTiteTitle} from "./DiaryTile.style";
 
 interface Props {
     diary: Diary
@@ -32,6 +32,7 @@ const DiaryTile:FC<Props>  = (props) => {
     const totalEntries = props.diary?.entryIds?.length
     // Classes.
     const diarytile_paper_classes = diaryTilePaperStyles()
+    const diaryTile_title_classes = diaryTiteTitle()
     //
     const saveCreate = () => {
         http.put<Diary, Diary>(`/diaries/${diary.id}`, diary)
@@ -52,16 +53,17 @@ const DiaryTile:FC<Props>  = (props) => {
                 opacity: {initial:'1',onHover:'1'}
             }}>   
                 <Paper className={diarytile_paper_classes.root}>
-                    <Typography variant="h3" title="Click to Edit" onClick={()=>{setIsEditing(true)}} style={{cursor:"pointer"}}>
-                        {isEditing ? <TextField value={diary.title} onChange={(e)=>{
-                            setDiary({...diary, title:diary.title})}} onKeyUp={(e)=>{
-                                if(e.key == "Enter") {
-                                    saveCreate()
-                                } 
-                            }} variant="outlined"/> : 
+                    <Typography variant="h4" title="Click to Edit" onClick={()=>{setIsEditing(true)}} style={{cursor:"pointer"}}>
+                        {isEditing ? 
+                            <TextField value={diary.title} onChange={(e)=>{
+                                    setDiary({...diary, title:diary.title})}} onKeyUp={(e)=>{
+                                        if(e.key == "Enter") {
+                                            saveCreate()
+                                        } 
+                                    }} variant="outlined"/> : 
                                     <span>{diary.title}</span> }
                     </Typography>
-                    <Typography variant="subtitle1" noWrap={true} variantMapping={{subtitle1:'p'}}></Typography>
+                    <Typography variant="subtitle1" noWrap={false} variantMapping={{subtitle1:'p'}}></Typography>
                 </Paper>
             </AnimationWrapper>
             <Divider/>

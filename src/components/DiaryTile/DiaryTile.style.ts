@@ -9,4 +9,10 @@ export const diaryTilePaperStyles = makeStyles((theme: Theme)=>(
     }))
 )
 
-// export cont diaryTit
+export const diaryTiteTitle = makeStyles((theme: Theme)=>(
+    createStyles({
+        textConfig: {
+            // fontSize: 14
+        }        
+    }))
+)
