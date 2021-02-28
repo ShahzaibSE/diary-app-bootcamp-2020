@@ -6,7 +6,7 @@ export const diaryTilePaperStyles = makeStyles((theme: Theme)=>(
         root: {
             display: "flex",
             flexWrap: "wrap",
-            width: "90%",
+            minWidth: "100%",
             marginTop: 20,
             paddingTop: 20,
             paddingBottom: 20

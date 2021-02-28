@@ -78,16 +78,12 @@ const DiaryTile:FC<Props>  = (props) => {
                                         variant="subtitle2" noWrap={false}>
                                 {totalEntries ?? 0} Saved Entries
                             </Typography>
-                            <Grid container spacing={1} alignItems="center" justify="center">
-                                <Grid item sm={12} md={4} lg={4}>
-                                    <Button className={diaryTile_add_entry_btn_classes.root} 
-                                            size="small" variant="contained" endIcon={<Add/>}>Entry</Button>
-                                </Grid>
-                                <Grid item sm={12} md={4} lg={4}>
-                                    <Button className={diaryTile_view_entries_btn_classes.root}
-                                            size="small" endIcon={<List/>}>Entries</Button>
-                                </Grid>
-                            </Grid>
+                          
+                            {/* <Button className={diaryTile_add_entry_btn_classes.root} 
+                                    size="small" variant="contained" endIcon={<Add/>}>Entry</Button>
+
+                            <Button className={diaryTile_view_entries_btn_classes.root}
+                                    size="small" endIcon={<List/>}>Entries</Button> */}
                         </Paper>
                     {/* </Grid> */}
 
