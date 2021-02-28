@@ -99,7 +99,6 @@ const DiaryTile:FC<Props>  = (props) => {
                     {/* </Grid>
                 </Grid> */}
             </AnimationWrapper>
-            <Divider/>
         </div>
     )
 }
