@@ -3,9 +3,10 @@ import {Link} from "react-router-dom";
 import Paper from '@material-ui/core/Paper';
 import {AnimationWrapper} from "react-hover-animation";
 import Typography from "@material-ui/core/Typography";
-import Divider from "@material-ui/core/Divider";
 import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
+import Fab from '@material-ui/core/Fab';
+import AddIcon from '@material-ui/icons/Add';
+import Tooltip from "@material-ui/core/Tooltip";
 import Grid from "@material-ui/core/Grid";
 import {Add, List} from "@material-ui/icons";
 // Model.
@@ -59,41 +60,52 @@ const DiaryTile:FC<Props>  = (props) => {
                 transform:{initial:'scale(1)',onHover:'scale(1.1)'},
                 opacity: {initial:'1',onHover:'1'}
             }}>  
-                {/* <Grid container justify="center" alignItems="center">
-                    <Grid item sm={12} md={6} lg={6}>  */}
-                        <Paper className={diarytile_paper_classes.root} variant="outlined">
-                            <Typography className={diaryTile_title_classes.root} 
-                                        variant="h5" title="Click to Edit" onClick={()=>{setIsEditing(true)}} 
-                                        style={{cursor:"pointer", fontWeight:"bold"}}>
-                                {isEditing ? 
-                                    <TextField value={diary.title} onChange={(e)=>{
-                                            setDiary({...diary, title:diary.title})}} onKeyUp={(e)=>{
-                                                if(e.key == "Enter") {
-                                                    saveCreate()
-                                                } 
-                                            }} variant="outlined"/> : 
-                                            <span>{diary.title}</span> }
-                            </Typography>
-                            <Typography className={diaryTile_total_entries_classes.root} 
-                                        variant="subtitle2" noWrap={false}>
-                                {totalEntries ?? 0} Saved Entries
-                            </Typography>
-                          
-                            {/* <Button className={diaryTile_add_entry_btn_classes.root} 
-                                    size="small" variant="contained" endIcon={<Add/>}>Entry</Button>
+                <Paper className={diarytile_paper_classes.root} variant="outlined">
+                    <Grid container spacing={0} justify="flex-end" alignItems="center">
+                            <Grid item sm={12} md={12} lg={12}>
+                                <Typography className={diaryTile_title_classes.root} 
+                                            variant="h5" title="Click to Edit" onClick={()=>{setIsEditing(true)}} 
+                                            style={{cursor:"pointer", fontWeight:"bold"}}>
+                                    {isEditing ? 
+                                        <TextField value={diary.title} onChange={(e)=>{
+                                                setDiary({...diary, title:diary.title})}} onKeyUp={(e)=>{
+                                                    if(e.key == "Enter") {
+                                                        saveCreate()
+                                                    } 
+                                                }} variant="outlined"/> : 
+                                                <span>{diary.title}</span> }
+                                </Typography>
+                                <Typography className={diaryTile_total_entries_classes.root} 
+                                            variant="subtitle2" noWrap={false}>
+                                    {totalEntries ?? 0} Saved Entries
+                                </Typography><br/>
 
-                            <Button className={diaryTile_view_entries_btn_classes.root}
-                                    size="small" endIcon={<List/>}>Entries</Button> */}
-                        </Paper>
-                    {/* </Grid> */}
+                                {/* <div style={{width:"80%"}}>
+                                    <Fab color="primary" aria-label="Add Entry">
+                                        <AddIcon />
+                                    </Fab>
 
-                    {/* <Grid item sm={12} md={4} lg={4}> */}
-                        
-                    {/* </Grid> */}
-                    {/* <Grid item sm={12} md={4} lg={4}> */}
-    
-                    {/* </Grid>
-                </Grid> */}
+                                    <Fab color="primary" aria-label="Entries list">
+                                        <List />
+                                    </Fab>
+                                </div> */}
+                        </Grid>
+                        <Grid item sm={12} md={5} lg={5}>
+                            <Tooltip title="Add Entry" aria-label="Add Entry">
+                                <Fab className={diaryTile_add_entry_btn_classes.root} aria-label="Add Entry">
+                                    <AddIcon />
+                                </Fab>
+                            </Tooltip>
+                        </Grid>
+                        <Grid item sm={12} md={5} lg={5}>
+                            <Tooltip title="Entries List" aria-label="Entries List">
+                                <Fab className={diaryTile_view_entries_btn_classes.root} aria-label="Entries list">
+                                    <List />
+                                </Fab>
+                            </Tooltip>
+                        </Grid>
+                    </Grid>
+                </Paper>
             </AnimationWrapper>
         </div>
     )

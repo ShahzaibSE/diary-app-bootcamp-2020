@@ -59,10 +59,10 @@ export const createDiaryBtnContainerStyles = makeStyles((theme: Theme)=>
 export const createDiaryBtnStyles = makeStyles((theme: Theme)=>
         createStyles({
                 button: {
-                    margin: theme.spacing(1),
+                    margin: theme.spacing(2,0),
                     fontWeight: 'bold',
                     width: "100%",
-                    backgroundColor: teal[300]
+                    // backgroundColor: teal[300]
                 }
         })
 )
