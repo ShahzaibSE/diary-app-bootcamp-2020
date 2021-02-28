@@ -5,6 +5,7 @@ import {AnimationWrapper} from "react-hover-animation";
 import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
 import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
 // Model.
 import {Diary} from "../../models/diary.interface";
 // Features.
@@ -55,7 +56,7 @@ const DiaryTile:FC<Props>  = (props) => {
             }}>   
                 <Paper className={diarytile_paper_classes.root} variant="outlined">
                     <Typography className={diaryTile_title_classes.root} 
-                                variant="h4" title="Click to Edit" onClick={()=>{setIsEditing(true)}} style={{cursor:"pointer"}}>
+                                variant="h5" title="Click to Edit" onClick={()=>{setIsEditing(true)}} style={{cursor:"pointer", fontWeight:"bold"}}>
                         {isEditing ? 
                             <TextField value={diary.title} onChange={(e)=>{
                                     setDiary({...diary, title:diary.title})}} onKeyUp={(e)=>{
@@ -65,8 +66,8 @@ const DiaryTile:FC<Props>  = (props) => {
                                     }} variant="outlined"/> : 
                                     <span>{diary.title}</span> }
                     </Typography>
-                    <Typography className={diaryTile_total_entries_classes.textConfig} 
-                                variant="subtitle1" noWrap={false} variantMapping={{subtitle1:'p'}}>
+                    <Typography className={diaryTile_total_entries_classes.root} 
+                                variant="subtitle2" noWrap={false}>
                         {totalEntries ?? 0} Saved Entries
                     </Typography>
                 </Paper>

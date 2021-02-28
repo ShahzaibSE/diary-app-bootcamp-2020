@@ -6,7 +6,9 @@ export const diaryTilePaperStyles = makeStyles((theme: Theme)=>(
             display: "flex",
             flexWrap: "wrap",
             minWidth: "100%",
-            marginTop: 20
+            marginTop: 20,
+            paddingTop: 20,
+            paddingBottom: 20
         }
     }))
 )
@@ -25,9 +27,13 @@ export const diaryTileTitleStyles = makeStyles((theme: Theme)=>(
 
 export const diaryTileTotalEntries = makeStyles((theme: Theme)=>(
     createStyles({
-        textConfig: {
-            // fontSize: 14
-            display:'block'
+        root: {
+            color: "grey",
+            fontWeight: "bold",
+            textAlign: "center",
+            margin: "0 auto",
+            paddingLeft: 20,
+            paddingRight: 20
         }        
     }))
 )
