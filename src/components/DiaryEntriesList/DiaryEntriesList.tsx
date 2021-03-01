@@ -58,13 +58,9 @@ const DiaryEntriesList:FC = () => {
                             }}>
                             <ListItemIcon><Note/></ListItemIcon>
                             <ListItemText>{entry.title}</ListItemText>
+                            <Divider/>
                         </ListItem>
                     ))}
-                        <ListItem>
-                            <ListItemIcon><Note/></ListItemIcon>
-                            <ListItemText primary="Entry #1" />
-                        </ListItem>
-                    <Divider/>
                 </List>
             </div>
         </div>
