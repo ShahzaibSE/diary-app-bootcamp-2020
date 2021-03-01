@@ -54,6 +54,12 @@ const DiaryTile:FC<Props>  = (props) => {
             })
     }
     //
+    const addEntryFn = () => {
+        dispatch(setCanEdit(true))
+        dispatch(setActiveDiaryId(diary.id as string))
+        dispatch(setCurrentlyEditing(null))
+    }
+    //
     return (
         <div>
             <AnimationWrapper config={{
@@ -92,17 +98,20 @@ const DiaryTile:FC<Props>  = (props) => {
                         </Grid>
                         <Grid item sm={12} md={5} lg={5}>
                             <Tooltip title="Add Entry" aria-label="Add Entry">
-                                <Fab className={diaryTile_add_entry_btn_classes.root} aria-label="Add Entry">
+                                <Fab className={diaryTile_add_entry_btn_classes.root} aria-label="Add Entry"
+                                    onClick={addEntryFn}>
                                     <AddIcon />
                                 </Fab>
                             </Tooltip>
                         </Grid>
                         <Grid item sm={12} md={5} lg={5}>
-                            <Tooltip title="Entries List" aria-label="Entries List">
-                                <Fab className={diaryTile_view_entries_btn_classes.root} aria-label="Entries list">
-                                    <List />
-                                </Fab>
-                            </Tooltip>
+                            <Link to={`/diary/${diary.id}`}>  
+                                <Tooltip title="Entries List" aria-label="Entries List">
+                                    <Fab className={diaryTile_view_entries_btn_classes.root} aria-label="Entries list">
+                                        <List />
+                                    </Fab>
+                                </Tooltip>
+                            </Link>
                         </Grid>
                     </Grid>
                 </Paper>
