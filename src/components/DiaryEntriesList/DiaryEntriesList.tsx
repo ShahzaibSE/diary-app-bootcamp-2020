@@ -50,7 +50,16 @@ const DiaryEntriesList:FC = () => {
             </header>
             <div>
                 <List component="nav" aria-label="diary entries list">
-                    <Divider/>
+                    {entries.map((entry) => (
+                        <ListItem key={entry.id} 
+                            onClick={()=>{
+                                dispatch(setCurrentlyEditing(entry))
+                                dispatch(setCanEdit(true))
+                            }}>
+                            <ListItemIcon><Note/></ListItemIcon>
+                            <ListItemText>{entry.title}</ListItemText>
+                        </ListItem>
+                    ))}
                         <ListItem>
                             <ListItemIcon><Note/></ListItemIcon>
                             <ListItemText primary="Entry #1" />
