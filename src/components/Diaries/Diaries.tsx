@@ -124,20 +124,21 @@ const Diaries:FC<Props> = (props: Props) => {
         <Routes>
         {/* Grid for create button  */}
           <Grid container direction="column" alignItems="center" justify="center">
-            <Grid item sm={12} md={12} lg={12}>
-              {/* <div className={diaryCreateBtnContainerClasses.root}> */}
-              {/* <DiaryTile diary={{title:'First Diary', type:'public', entryIds:[]}}/>    */}
-              {/* <Route path="/diary/:id"></Route>     */}
-              <Route path="/">
-                <Button className={diaryCreateBtnClasses.button} variant="contained" color="primary"
-                            size="large" endIcon={<Add/>} onClick={createDiary} > Create Diary </Button>
-              </Route>          
-    
-              {/* </div> */}
-            </Grid>  
-            <Grid sm={12} md={12} lg={12}>
-              <DiaryTile diary={{title:'First Diary', type:'public', entryIds:[]}}/>   
-            </Grid>
+            <Route path="/">
+              <Grid item sm={12} md={12} lg={12}>
+                {/* <div className={diaryCreateBtnContainerClasses.root}> */}
+                {/* <DiaryTile diary={{title:'First Diary', type:'public', entryIds:[]}}/>    */}
+                {/* <Route path="/diary/:id"></Route>     */}
+              
+                  <Button className={diaryCreateBtnClasses.button} variant="contained" color="primary"
+                              size="large" endIcon={<Add/>} onClick={createDiary} > Create Diary </Button>   
+      
+                {/* </div> */}
+              </Grid>  
+              <Grid sm={12} md={12} lg={12}>
+                <DiaryTile diary={{title:'First Diary', type:'public', entryIds:[]}}/>   
+              </Grid>
+            </Route>
           </Grid>    
 
           <Divider />
