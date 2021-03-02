@@ -28,6 +28,8 @@ import Editor from "./../Editor/Editor";
 import DiaryTile from "./../DiaryTile/DiaryTile";
 // API.
 import {http} from "./../../api/index.api";
+// Features.
+import {clearToken, setAuthState} from "./../../features/auth/auth.slice"
 // Model.
 import {Diary} from "./../../models/diary.interface";
 import {User} from "./../../models/user.interface";
@@ -56,6 +58,11 @@ const Diaries:FC<Props> = (props: Props) => {
     //
     const handleDrawerToggle = () => {
       setMobileOpen(!mobileOpen)
+    }
+    //
+    const logout = ()=>{
+      dispatch(clearToken())
+      dispatch(setAuthState(false))
     }
     //
     useEffect(()=>{
@@ -178,7 +185,7 @@ const Diaries:FC<Props> = (props: Props) => {
                     </Typography>
 
                     <Tooltip title="Log Out" aria-label="Log Out">
-                      <IconButton className={diaryDrawerClasses.log_out_btn}>
+                      <IconButton className={diaryDrawerClasses.log_out_btn} onClick={logout}>
                         <ExitToApp/>
                       </IconButton>
                     </Tooltip>  
