@@ -4,7 +4,7 @@ import { User } from "../models/user.interface"
 import { Diary } from './../models/diary.interface'
 import { Entry } from "./../models/entry.interface"
 // Controllers.
-import { signUp, login } from "./controllers/user.controller"
+import { signUp, login, logOut } from "./controllers/user.controller"
 import { addEntry, getEntries, updateEntry } from "./controllers/entry.controller"
 import { createDiary, updateDiary, getDiaries } from "./controllers/diary.controller"
 
@@ -25,8 +25,9 @@ export const handleErrors:any = (error: any, message = 'An error ocurred') => {
 };
 
 // Server.
-const mockServer = function() {
-    new Server({
+const mockServer = function(env?: string): Server {
+   return new Server({
+        environment: env ?? "development",
         models:{
             user: Model.extend({
                 diary: hasMany(),
@@ -55,6 +56,7 @@ const mockServer = function() {
             // User Routes.
             this.post("/auth/create", signUp)
             this.post("/auth/signin", login)
+            this.post("/auth/logout", logOut)
             // Diary Routes.
             this.get('/diaries/:id', getDiaries)
             this.post('/diaries', createDiary)

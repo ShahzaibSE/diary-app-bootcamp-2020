@@ -42,3 +42,18 @@ export const signUp = function(schema:any, request:Request):AuthResponse  {
     };
 }
 
+export const logOut = function(schema:any, request: Request): AuthResponse | Boolean {
+    const data = JSON.parse(request.requestBody)
+    const exUser = schema.user.findBy({username: data.username})
+    const token = ""
+    if (exUser == null){
+      handleErrors(null, "A user with that username does not exist.")
+      return false
+    }else {
+      return {
+        user: exUser.attr as User,
+        token
+      }
+    }
+}
+
