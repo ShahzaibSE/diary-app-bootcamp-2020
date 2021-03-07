@@ -7,10 +7,10 @@ export const userSlice = createSlice({
     name: "user",
     initialState: null as User | null,
     reducers: {
-        setUser (state:any, {payload}: PayloadAction<User|null>){
+        setUser (state:any, {payload}: PayloadAction<User>){
             console.log("Set User - Payload")
             console.log(payload)
-            state = (payload != null) ? payload : null
+            return (state=payload)
         }
     }
 })
