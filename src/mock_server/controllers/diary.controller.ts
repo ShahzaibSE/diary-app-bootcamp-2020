@@ -11,6 +11,8 @@ export const createDiary = (schema: any, req: Request) => {
         const { title, type, userId } = JSON.parse(req.requestBody) as Partial<Diary>;
         // Checking existing user.
         let exUser = schema.users.findBy({id:userId})
+        console.log("Check existing user - Diary Controller")
+        console.log(exUser)
         if(!exUser) {
             return handleErrors(false, "User does not exist")
         }

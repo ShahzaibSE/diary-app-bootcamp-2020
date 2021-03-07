@@ -10,6 +10,7 @@ import MuiAlert, { AlertProps } from '@material-ui/lab/Alert';
 import * as yup from "yup";
 import {useFormik} from "formik";
 import axios from "axios";
+
 // Features.
 import {setUser} from "./../../features/auth/user.slice";
 import {saveToken, setAuthState} from "./../../features/auth/auth.slice";
@@ -35,7 +36,7 @@ const SignUp: FC = () => {
     const snackbar_classes = snackbarStyles()
     const [open, setOpen] = useState<boolean>(false)
     const [loading, setLoading] = useState(false)
-    const dispatch = useDispatch()
+    const dispatch = useAppDispatch()
 
     // Snackbar handlers.
     const handleClick = () => {
@@ -58,9 +59,11 @@ const SignUp: FC = () => {
             const path = "/auth/create"
             console.log("Attempting to signup.")
             console.log(data)
-            http.post<User, AuthResponse>(path,data).then(async (res) => {
+            http.post<User, AuthResponse>(path,data).then((res) => {
                 if (res) {
                   const { user, token } = res;
+                  console.log("User - SignUp Component")
+                  console.log(user)
                   dispatch(saveToken(token));
                   dispatch(setUser(user));
                   dispatch(setAuthState(true))

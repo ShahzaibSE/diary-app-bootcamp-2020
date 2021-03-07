@@ -29,7 +29,8 @@ import DiaryTile from "./../DiaryTile/DiaryTile";
 // API.
 import {http} from "./../../api/index.api";
 // Features.
-import {clearToken, setAuthState} from "./../../features/auth/auth.slice"
+import {clearToken, setAuthState} from "./../../features/auth/auth.slice";
+import {getUserSelector} from "./../../features/auth/user.slice";
 // Model.
 import {Diary} from "./../../models/diary.interface";
 import {User} from "./../../models/user.interface";
@@ -37,12 +38,7 @@ import {User} from "./../../models/user.interface";
 import {diaryDrawerStyles, createDiaryBtnStyles, createDiaryBtnContainerStyles, drawerAppBarStyles} from "./Diaries.style";
 
 
-interface Props {
-  windows?: () => Window
-}
-
-const Diaries:FC<Props> = (props: Props) => {
-    const { windows } = props
+const Diaries:FC = () => {
     // Styles Classes
     const diaryDrawerClasses = diaryDrawerStyles()
     const diaryCreateBtnClasses = createDiaryBtnStyles()
@@ -51,8 +47,9 @@ const Diaries:FC<Props> = (props: Props) => {
     //
     const theme = useTheme()
     const dispatch = useAppDispatch()
-    const {diaries} = useSelector((state: RootState)=>state)
-    const {user} = useSelector((state:RootState)=>state)
+    const diaries = useSelector((state: RootState)=>state.diaries)
+    const user = useSelector((state:RootState)=>state.user)
+    // const {user} = useSelector(getUserSelector)
     // For Mobile State.
     const [mobileOpen, setMobileOpen] = useState(false)
     //
@@ -64,6 +61,9 @@ const Diaries:FC<Props> = (props: Props) => {
       dispatch(clearToken())
       dispatch(setAuthState(false))
     }
+    //
+    console.log("Existing User while creating diary - Diaries Component")
+    console.log(user)
     //
     useEffect(()=>{
         const fetchDiaries = async () => {
@@ -115,6 +115,7 @@ const Diaries:FC<Props> = (props: Props) => {
             dispatch(addDiary([diary] as Diary[]));
             dispatch(addDiary([diary] as Diary[]));
             dispatch(setUser(_user));
+            //
             return Swal.fire({
               titleText: 'All done!',
               confirmButtonText: 'OK!',

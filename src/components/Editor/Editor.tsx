@@ -27,12 +27,13 @@ const Editor:FC = () => {
     const { currentlyEditing: entry, canEdit, activeDiaryId } = useSelector((state: RootState) => state.editor)
     const [editedEntry, updateEditedEntry] = useState(entry)
     const dispatch = useAppDispatch()
+    const {user} = useSelector((state: RootState) => state)
     // Style Class instances.
     const editor_card_classes = editorCardStyles()
     const editor_textfield_classes = editorTextFieldStyles()
     const editor_textarea_classes = editorTextAreaStyles()
     const editor_savebtn_classes = editorSaveBtn()
-    // 
+    
     const saveEntry = () => {
         if (activeDiaryId == null) {
             showAlert("Please select a diary", "warning")
