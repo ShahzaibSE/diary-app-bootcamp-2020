@@ -7,7 +7,7 @@ export const userSlice = createSlice({
     name: "user",
     initialState: null as User | null,
     reducers: {
-        setUser (state:any, {payload}: PayloadAction<User>){
+        setUser (state:any, {payload}: PayloadAction<User|null>){
             console.log("Set User - Payload")
             console.log(payload)
             return (state=payload)
