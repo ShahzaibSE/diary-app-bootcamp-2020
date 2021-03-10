@@ -49,7 +49,6 @@ const Diaries:FC = () => {
     const dispatch = useAppDispatch()
     const diaries = useSelector((state: RootState)=>state.diaries)
     const user = useSelector((state:RootState)=>state.user)
-    // const {user} = useSelector(getUserSelector)
     // For Mobile State.
     const [mobileOpen, setMobileOpen] = useState(false)
     //
@@ -164,8 +163,6 @@ const Diaries:FC = () => {
       </div>
     );
     //
-    const container = window !== undefined ? () => window.document.body : undefined;
-    //
     return (
         <div className="diaries">
             <div className={diaryDrawerClasses.root}>
@@ -196,7 +193,6 @@ const Diaries:FC = () => {
                   {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
                   <Hidden smUp implementation="css">
                     <Drawer
-                      container={container}
                       variant="temporary"
                       anchor={theme.direction === 'rtl' ? 'right' : 'left'}
                       open={mobileOpen}
