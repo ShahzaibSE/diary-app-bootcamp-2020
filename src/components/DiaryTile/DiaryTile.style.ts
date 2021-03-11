@@ -1,5 +1,5 @@
 import { makeStyles, useTheme, Theme, createStyles } from '@material-ui/core/styles';
-import { green, red, blueGrey, grey } from "@material-ui/core/colors";
+import { green, red, lightBlue, grey } from "@material-ui/core/colors";
 
 export const diaryTilePaperStyles = makeStyles((theme: Theme)=>(
     createStyles({
@@ -10,7 +10,7 @@ export const diaryTilePaperStyles = makeStyles((theme: Theme)=>(
             marginTop: 20,
             paddingTop: 20,
             paddingBottom: 20,
-            backgroundColor: blueGrey[300]
+            backgroundColor: lightBlue['A400']
         }
     }))
 )
