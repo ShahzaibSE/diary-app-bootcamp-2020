@@ -149,18 +149,15 @@ const Diaries:FC = () => {
         
                   {/* </div> */}
                   </Grid>
-                  <Routes> 
-                    <Route path="/">    
-                      {diaries.map((diary:Diary, idx)=>(
-                        <Grid key={idx} sm={12} md={12} lg={12}>
-                            <DiaryTile key={idx} diary={diary}/>   
-                        </Grid>
+                   
+                      {diaries.map((diary, index)=>(
+                        <Route path="/" element={<Grid item key={index} sm={12} md={12} lg={12}>
+                            <DiaryTile key={index} diary={diary}/>   
+                        </Grid>}/>
                       ))}
-                    </Route> 
 
                   <Divider />
                       <Route path="/diary/:id"><DiaryEntriesList/></Route>
-                  </Routes>
               <Divider />
           </Grid>
       </div>
