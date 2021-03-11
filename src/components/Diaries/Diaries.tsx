@@ -61,9 +61,6 @@ const Diaries:FC = () => {
       dispatch(setAuthState(false))
     }
     //
-    console.log("Existing User while creating diary - Diaries Component")
-    console.log(user)
-    //
     useEffect(()=>{
         const fetchDiaries = async () => {
             http.get<null, Diary[]>(`/diaries/${user?.id}`).then((data)=>{
@@ -110,7 +107,15 @@ const Diaries:FC = () => {
             type: value[1],
             userId: user?.id,
           });
+          //
+          console.log("Diary")
+          console.log(diary)
+          console.log("User")
+          console.log(user)
+          console.log("Data from form")
+          console.log(value)
           if (diary && user) {
+            console.log("Diary and user are not empty")
             dispatch(addDiary([diary] as Diary[]));
             dispatch(addDiary([diary] as Diary[]));
             dispatch(setUser(_user));

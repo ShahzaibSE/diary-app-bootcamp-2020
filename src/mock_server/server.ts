@@ -6,7 +6,7 @@ import { Entry } from "./../models/entry.interface"
 // Controllers.
 import { signUp, login } from "./controllers/user.controller"
 import { addEntry, getEntries, updateEntry } from "./controllers/entry.controller"
-import { createDiary, updateDiary, getDiaries } from "./controllers/diary.controller"
+import { create, updateDiary, getDiaries } from "./controllers/diary.controller"
 
 
 export interface AuthResponse {
@@ -59,7 +59,7 @@ const mockServer = function(env?: string): Server {
             // this.post("/auth/logout", logOut)
             // Diary Routes.
             this.get('/diaries/:id', getDiaries)
-            this.post('/diaries', createDiary)
+            this.post('/diaries', create)
             this.put('/diaries/:id', updateDiary);
             // Entry route.
             this.post('/diaries/entry/:id', addEntry)

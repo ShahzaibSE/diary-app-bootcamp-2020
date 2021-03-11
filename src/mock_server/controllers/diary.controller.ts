@@ -1,39 +1,36 @@
-import {Request} from "miragejs"
-import * as dayjs from "dayjs"
+import {Request} from "miragejs";
+import daysjs from "dayjs";
 // Error handlers.
-import {handleErrors} from "./../server"
+import {handleErrors} from "./../server";
 // Models.
-import {Diary} from "./../../models/diary.interface"
+import {Diary} from "./../../models/diary.interface";
+import {User} from "./../../models/user.interface";
 
 
-export const createDiary = (schema: any, req: Request) => {
+export const create = (schema: any, req: Request) : { user: User; diary: Diary } | Response => {
     try {
-        const { title, type, userId } = JSON.parse(req.requestBody) as Partial<Diary>;
-        // Checking existing user.
-        let exUser = schema.users.findBy({id:userId})
-        console.log("Check existing user - Diary Controller")
-        console.log(exUser)
-        if(!exUser) {
-            return handleErrors(false, "User does not exist")
-        }
-        const now = new dayjs.Dayjs().format()
-        console.log("Current date")
-        console.log(now)
-        const diary = exUser.createDiary({
-            title,
-            type,
-            createdAt: now,
-            updatedAt: now,
-          });
-          return {
-            user: {
-              ...exUser.attrs,
-            },
-            diary: diary.attrs,
-        };
-    }
-    catch(error){
-        return handleErrors(error, 'Failed to create Diary.');
+        const { title, type, userId } = JSON.parse(req.requestBody) as Partial<
+        Diary
+      >;
+      const exUser = schema.users.findBy({ id: userId });
+      if (!exUser) {
+        return handleErrors(null, 'No such user exists.');
+      }
+      const now = daysjs().format();
+      const diary = exUser.createDiary({
+        title,
+        type,
+        createdAt: now,
+        updatedAt: now,
+      });
+      return {
+        user: {
+          ...exUser.attrs,
+        },
+        diary: diary.attrs,
+      };
+    } catch (error) {
+      return handleErrors(error, 'Failed to create Diary.');
     }
 }
 
@@ -41,7 +38,7 @@ export const updateDiary = (schema:any, req:Request) => {
     try {
         const diary = schema.diaries.find(req.params.id)
         const data = JSON.parse(req.requestBody) as Partial<Diary>
-        const now = new dayjs.Dayjs().format()
+        const now = daysjs().format()
         diary.update(
             {
                 ...data,
