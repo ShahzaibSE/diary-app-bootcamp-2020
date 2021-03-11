@@ -5,7 +5,7 @@ import Swal from 'sweetalert2';
 import { addDiary } from "./../../features/diary/diary.slice";
 import {setUser} from "./../../features/auth/user.slice";
 import {useAppDispatch} from "./../../app_store/store";
-import dayjs from 'dayjs';
+import daysjs from 'dayjs';
 import Divider from "@material-ui/core/Divider";
 import Drawer from "@material-ui/core/Drawer";
 import Hidden from '@material-ui/core/Hidden';
@@ -65,8 +65,10 @@ const Diaries:FC = () => {
         const fetchDiaries = async () => {
             http.get<null, Diary[]>(`/diaries/${user?.id}`).then((data)=>{
                 if (data.length > 0 && data) {
+                    console.log("Diaries fetched")
+                    console.log(data)
                     const sortByLastUpdated = data.sort((a:any, b: any) => {
-                        return new dayjs.Dayjs(b.updatedAt).unix() - new dayjs.Dayjs(a.updatedAt).unix()
+                        return daysjs(b.updatedAt).unix() - daysjs(a.updatedAt).unix()
                     })
                     dispatch(addDiary(sortByLastUpdated))
                 } 
@@ -74,6 +76,8 @@ const Diaries:FC = () => {
         }
         //
         fetchDiaries()
+        console.log("Diaries after being fetched - Diaries")
+        console.log(diaries)
     },[dispatch, user])
     //
     const createDiary = async () => {
@@ -133,38 +137,32 @@ const Diaries:FC = () => {
     //
     const drawer = (
       <div>
-        <Routes>
         {/* Grid for create button  */}
           <Grid container direction="column" alignItems="center" justify="center">
-            <Route path="/">
-              <Grid item sm={12} md={12} lg={12}>
-                {/* <div className={diaryCreateBtnContainerClasses.root}> */}
-                {/* <DiaryTile diary={{title:'First Diary', type:'public', entryIds:[]}}/>    */}
-                {/* <Route path="/diary/:id"></Route>     */}
-              
-                  <Button className={diaryCreateBtnClasses.button} variant="contained" color="primary"
-                              size="large" endIcon={<Add/>} onClick={createDiary} > Create Diary </Button>   
-      
-                {/* </div> */}
-              </Grid>  
-              <Grid sm={12} md={12} lg={12}>
-                <DiaryTile diary={{title:'First Diary', type:'public', entryIds:[]}}/>   
-              </Grid>
-            </Route>
-          </Grid>    
+                <Grid item sm={12} md={12} lg={12}>
+                  {/* <div className={diaryCreateBtnContainerClasses.root}> */}
+                  {/* <DiaryTile diary={{title:'First Diary', type:'public', entryIds:[]}}/>    */}
+                  {/* <Route path="/diary/:id"></Route>     */}
+                
+                    <Button className={diaryCreateBtnClasses.button} variant="contained" color="primary"
+                                size="large" endIcon={<Add/>} onClick={createDiary} > Create Diary </Button>   
+        
+                  {/* </div> */}
+                  </Grid>
+                  <Routes> 
+                    <Route path="/">    
+                      {diaries.map((diary:Diary, idx)=>(
+                        <Grid key={idx} sm={12} md={12} lg={12}>
+                            <DiaryTile key={idx} diary={diary}/>   
+                        </Grid>
+                      ))}
+                    </Route> 
 
-          <Divider />
-              <Route path="/diary/:id"><DiaryEntriesList/></Route>
-          {/* <List>
-            {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-              <ListItem button key={text}>
-                <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItem>
-            ))}
-          </List> */}
-          <Divider />
-        </Routes>
+                  <Divider />
+                      <Route path="/diary/:id"><DiaryEntriesList/></Route>
+                  </Routes>
+              <Divider />
+          </Grid>
       </div>
     );
     //
