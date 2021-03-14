@@ -21,7 +21,7 @@ import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import Tooltip from "@material-ui/core/Tooltip";
 import {Add} from "@material-ui/icons";
-import {Routes, Route} from "react-router-dom";
+import {Routes, Route, BrowserRouter as Router} from "react-router-dom";
 // Components.
 import DiaryEntriesList from "./../DiaryEntriesList/DiaryEntriesList";
 import Editor from "./../Editor/Editor";
@@ -139,29 +139,38 @@ const Diaries:FC = () => {
       <div>
         {/* Grid for create button  */}
           <Grid container direction="column" alignItems="center" justify="center" alignContent="center">
+              <Routes>
                 <Grid item sm={12} md={12} lg={12}>
                   <Route path="/diaries/:id">
                      <DiaryEntriesList/>
                   </Route>
                 </Grid> 
 
-                <Grid item sm={12} md={12} lg={12}>
-                  {/* <div className={diaryCreateBtnContainerClasses.root}> */}
-                  {/* <DiaryTile diary={{title:'First Diary', type:'public', entryIds:[]}}/>    */}
-                  {/* <Route path="/diary/:id"></Route>     */}
-                
-                    <Button className={diaryCreateBtnClasses.button} variant="contained" color="primary"
-                                size="large" endIcon={<Add/>} onClick={createDiary} > Create Diary </Button>   
-        
-                  {/* </div> */}
-                  </Grid>
+                {/* <Route path="/">
+                  <Grid item sm={12} md={12} lg={12}>
+                      <Button className={diaryCreateBtnClasses.button} variant="contained" color="primary"
+                                  size="large" endIcon={<Add/>} onClick={createDiary} > Create Diary </Button>   
+          
+                    </Grid>
                    
                       {diaries.map((diary, index)=>(
                         <Route path="/" element={<Grid item key={index} sm={12} md={12} lg={12}>
                             <DiaryTile key={index} diary={diary}/>   
                         </Grid>}/>
                       ))}
+                </Route> */}
 
+                <Route path="/" element={
+                  <Grid item sm={12} md={12} lg={12}>
+                  
+                      <Button className={diaryCreateBtnClasses.button} variant="contained" color="primary"
+                                  size="large" endIcon={<Add/>} onClick={createDiary} > Create Diary </Button>   
+          
+                    {/* </div> */}
+                    </Grid>}>
+                      
+                  </Route>
+              </Routes>    
                   {/* <Divider />
                       <Route path="/diary/:id" element={<DiaryEntriesList/>} /> */}
           </Grid>

@@ -10,6 +10,7 @@ import MuiAlert, { AlertProps } from '@material-ui/lab/Alert';
 import * as yup from "yup";
 import {useFormik} from "formik";
 import axios from "axios";
+import {Link} from "react-router-dom";
 
 // Features.
 import {setUser} from "./../../features/auth/user.slice";
@@ -149,7 +150,7 @@ const SignUp: FC = () => {
                             variant="contained" 
                             size="large"
                             color="secondary">
-                            Sign Up
+                            <Link to="/" style={{textDecoration:"none", color: "white", fontWeight:"bold"}}>Sign Up</Link>
                         </Button>
                     </Grid> 
                 </Grid>

@@ -6,7 +6,7 @@ import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import * as yup from "yup";
 import {useFormik} from "formik";
-// Features.
+import {Link} from "react-router-dom";
 // Features.
 import {setUser} from "./../../features/auth/user.slice";
 import {saveToken, setAuthState} from "./../../features/auth/auth.slice";
@@ -109,7 +109,7 @@ const Login: FC = () => {
                  <Button className={classes.login_btn} type="submit"
                      variant="contained" 
                      size="large" color="primary">
-                     Log In
+                      <Link to="/" style={{textDecoration:"none", color: "white", fontWeight:"bold"}}>Log In</Link>
                  </Button>
              </Grid> 
          </Grid>
