@@ -138,7 +138,13 @@ const Diaries:FC = () => {
     const drawer = (
       <div>
         {/* Grid for create button  */}
-          <Grid container direction="column" alignItems="center" justify="center">
+          <Grid container direction="column" alignItems="center" justify="center" alignContent="center">
+                <Grid item sm={12} md={12} lg={12}>
+                  <Route path="/diaries/:id">
+                     <DiaryEntriesList/>
+                  </Route>
+                </Grid> 
+
                 <Grid item sm={12} md={12} lg={12}>
                   {/* <div className={diaryCreateBtnContainerClasses.root}> */}
                   {/* <DiaryTile diary={{title:'First Diary', type:'public', entryIds:[]}}/>    */}
@@ -156,9 +162,8 @@ const Diaries:FC = () => {
                         </Grid>}/>
                       ))}
 
-                  <Divider />
-                      <Route path="/diary/:id"><DiaryEntriesList/></Route>
-              <Divider />
+                  {/* <Divider />
+                      <Route path="/diary/:id" element={<DiaryEntriesList/>} /> */}
           </Grid>
       </div>
     );

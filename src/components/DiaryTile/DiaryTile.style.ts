@@ -6,11 +6,11 @@ export const diaryTilePaperStyles = makeStyles((theme: Theme)=>(
         root: {
             display: "flex",
             flexWrap: "wrap",
-            width: "100%",
+            width: 300,
             marginTop: 20,
             paddingTop: 20,
             paddingBottom: 20,
-            backgroundColor: lightBlue['A400']
+            backgroundColor: lightBlue['A400'],
         }
     }))
 )
@@ -22,7 +22,7 @@ export const diaryTileTitleStyles = makeStyles((theme: Theme)=>(
             paddingRight: 20,
             textAlign: "center",
             width: "100%",
-            color: "white"
+            color: "white",
         }
     }))
 )
