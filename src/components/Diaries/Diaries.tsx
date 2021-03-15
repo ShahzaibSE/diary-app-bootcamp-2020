@@ -21,7 +21,7 @@ import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import Tooltip from "@material-ui/core/Tooltip";
 import {Add} from "@material-ui/icons";
-import {Routes, Route, BrowserRouter as Router} from "react-router-dom";
+import {Routes, Route, Outlet} from "react-router-dom";
 // Components.
 import DiaryEntriesList from "./../DiaryEntriesList/DiaryEntriesList";
 import Editor from "./../Editor/Editor";
@@ -136,7 +136,7 @@ const Diaries:FC = () => {
       };
     //
     const drawer = (
-      <div>
+      <div className="diaries-list">
         {/* Grid for create button  */}
           <Grid container direction="column" alignItems="center" justify="center" alignContent="center">
               <Routes>
@@ -174,7 +174,8 @@ const Diaries:FC = () => {
                   </Grid>
                   }>
                 </Route>
-              </Routes>    
+                {/* <Route path="/" element={<h1>Test Diary Route</h1>}/> */}
+              </Routes>   
                   {/* <Divider />
                       <Route path="/diary/:id" element={<DiaryEntriesList/>} /> */}
           </Grid>

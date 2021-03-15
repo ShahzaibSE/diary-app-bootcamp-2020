@@ -14,13 +14,12 @@ const AppContainer = () => {
     console.log(isLoggedIn)
     return (
         <div>
-            <Router>
-                <Routes>
-                    <Suspense fallback={<p>Loading..</p>}>
-                        <Route path="/" element={isLoggedIn ? <Home/> : <Auth/>}></Route>
-                    </Suspense>
-                </Routes>
-            </Router>
+            <Routes>
+                <Suspense fallback={<p>Loading..</p>}>
+                    <Route path="/" element={isLoggedIn ? <Home/> : <Auth/>}></Route>
+                    {/* <Route path="/" element={<h1>Hello Diary</h1>}></Route> */}
+                </Suspense>
+            </Routes>
         </div>
     )
 }
