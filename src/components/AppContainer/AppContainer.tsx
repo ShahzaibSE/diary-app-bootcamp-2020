@@ -15,10 +15,11 @@ const AppContainer = () => {
     return (
         <div>
             <Routes>
+               <Route path="/" element={ 
                 <Suspense fallback={<p>Loading..</p>}>
-                    <Route path="/" element={isLoggedIn ? <Home/> : <Auth/>}></Route>
-                    {/* <Route path="/" element={<h1>Hello Diary</h1>}></Route> */}
-                </Suspense>
+                    {isLoggedIn ? <Home/> : <Auth/>}
+                </Suspense>}>
+               </Route> 
             </Routes>
         </div>
     )

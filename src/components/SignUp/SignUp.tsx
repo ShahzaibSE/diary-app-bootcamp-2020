@@ -10,7 +10,7 @@ import MuiAlert, { AlertProps } from '@material-ui/lab/Alert';
 import * as yup from "yup";
 import {useFormik} from "formik";
 import axios from "axios";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
 // Features.
 import {setUser} from "./../../features/auth/user.slice";
@@ -38,6 +38,7 @@ const SignUp: FC = () => {
     const [open, setOpen] = useState<boolean>(false)
     const [loading, setLoading] = useState(false)
     const dispatch = useAppDispatch()
+    const navigate = useNavigate()
 
     // Snackbar handlers.
     const handleClick = () => {
@@ -68,6 +69,9 @@ const SignUp: FC = () => {
                   dispatch(saveToken(token));
                   dispatch(setUser(user));
                   dispatch(setAuthState(true))
+                  //
+                //   navigate("/diaries-list")
+                  navigate("/")
                 }
               }).catch((err:any)=>{
                 console.log("Signup error")
@@ -150,7 +154,8 @@ const SignUp: FC = () => {
                             variant="contained" 
                             size="large"
                             color="secondary">
-                            <Link to="/" style={{textDecoration:"none", color: "white", fontWeight:"bold"}}>Sign Up</Link>
+                            <span style={{textDecoration:"none", color: "white", fontWeight:"bold"}}>Sign Up</span>    
+                            {/* <Link to="/" style={{textDecoration:"none", color: "white", fontWeight:"bold"}}>Sign Up</Link> */}
                         </Button>
                     </Grid> 
                 </Grid>

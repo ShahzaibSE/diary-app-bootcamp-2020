@@ -109,7 +109,8 @@ const Login: FC = () => {
                  <Button className={classes.login_btn} type="submit"
                      variant="contained" 
                      size="large" color="primary">
-                      <Link to="/" style={{textDecoration:"none", color: "white", fontWeight:"bold"}}>Log In</Link>
+                    <span style={{textDecoration:"none", color: "white", fontWeight:"bold"}}>Log In</span>    
+                      {/* <Link to="/" style={{textDecoration:"none", color: "white", fontWeight:"bold"}}>Log In</Link> */}
                  </Button>
              </Grid> 
          </Grid>
