@@ -141,12 +141,12 @@ const Diaries:FC = () => {
           <Grid container direction="column" alignItems="center" justify="center" alignContent="center">
               {/* <Routes> */}
                 
-                  <Route path="diaries/:id" element={
+                  {/* <Route path="diaries/:id" element={
                      <Grid item sm={12} md={12} lg={12}>
                         <DiaryEntriesList/>
                      </Grid>
                      }>
-                  </Route>
+                  </Route> */}
                
 
                 {/* <Route path="/">
