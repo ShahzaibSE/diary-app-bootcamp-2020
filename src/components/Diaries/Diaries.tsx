@@ -140,11 +140,14 @@ const Diaries:FC = () => {
         {/* Grid for create button  */}
           <Grid container direction="column" alignItems="center" justify="center" alignContent="center">
               {/* <Routes> */}
-                <Grid item sm={12} md={12} lg={12}>
-                  <Route path="diaries/:id">
-                     <DiaryEntriesList/>
+                
+                  <Route path="diaries/:id" element={
+                     <Grid item sm={12} md={12} lg={12}>
+                        <DiaryEntriesList/>
+                     </Grid>
+                     }>
                   </Route>
-                </Grid> 
+               
 
                 {/* <Route path="/">
                   <Grid item sm={12} md={12} lg={12}>
