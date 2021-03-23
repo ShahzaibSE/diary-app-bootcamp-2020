@@ -10,8 +10,6 @@ const Home = lazy(()=>import("./../../components/Home/Home"));
 
 const AppContainer = () => {
     const isLoggedIn = useSelector((state:RootState)=>state.auth.isAuthenticated)
-    console.log("Auth state - AppContainer")
-    console.log(isLoggedIn)
     return (
         <div>
             <Routes>
