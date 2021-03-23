@@ -105,7 +105,7 @@ const DiaryTile:FC<Props>  = (props) => {
                             </Tooltip>
                         </Grid>
                         <Grid item sm={12} md={5} lg={5}>
-                            <Link to={`/diary/${diary.id}`}>  
+                            <Link to={`diary/${diary.id}`}>  
                                 <Tooltip title="Entries List" aria-label="Entries List">
                                     <Fab className={diaryTile_view_entries_btn_classes.root} aria-label="Entries list">
                                         <List />
