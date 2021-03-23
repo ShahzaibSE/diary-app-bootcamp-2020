@@ -139,14 +139,14 @@ const Diaries:FC = () => {
       <div className="diaries-list">
         {/* Grid for create button  */}
           <Grid container direction="column" alignItems="center" justify="center" alignContent="center">
-              {/* <Routes> */}
+              <Routes>
                 
-                  {/* <Route path="diaries/:id" element={
+                  <Route path="/diary/:id" element={
                      <Grid item sm={12} md={12} lg={12}>
                         <DiaryEntriesList/>
                      </Grid>
                      }>
-                  </Route> */}
+                  </Route>
                
 
                 {/* <Route path="/">
@@ -177,7 +177,7 @@ const Diaries:FC = () => {
                   </Grid>
                   }>
                 </Route>
-              {/* </Routes>    */}
+              </Routes>   
                   {/* <Divider />
                       <Route path="/diary/:id" element={<DiaryEntriesList/>} /> */}
           </Grid>
