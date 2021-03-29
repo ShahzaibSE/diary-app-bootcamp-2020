@@ -21,7 +21,7 @@ import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import Tooltip from "@material-ui/core/Tooltip";
 import {Add} from "@material-ui/icons";
-import {Routes, Route, Outlet} from "react-router-dom";
+import {Routes, Route } from "react-router-dom";
 // Components.
 import DiaryEntriesList from "./../DiaryEntriesList/DiaryEntriesList";
 import Editor from "./../Editor/Editor";
@@ -141,7 +141,7 @@ const Diaries:FC = () => {
           <Grid container direction="column" alignItems="center" justify="center" alignContent="center">
               <Routes>
                 
-                  <Route path="diary/:id" element={
+                  <Route path=":id" element={
                      <Grid item sm={12} md={12} lg={12}>
                         <DiaryEntriesList/>
                      </Grid>

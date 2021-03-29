@@ -71,7 +71,7 @@ const SignUp: FC = () => {
                   dispatch(setAuthState(true))
                   //
                 //   navigate("/diaries-list")
-                  navigate("/")
+                //   navigate("/")
                 }
               }).catch((err:any)=>{
                 console.log("Signup error")
