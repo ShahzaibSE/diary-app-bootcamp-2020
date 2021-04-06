@@ -72,6 +72,7 @@ const SignUp: FC = () => {
                   //
                 //   navigate("/diaries-list")
                 //   navigate("/")
+                  navigate("/diary")
                 }
               }).catch((err:any)=>{
                 console.log("Signup error")

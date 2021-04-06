@@ -13,12 +13,23 @@ const AppContainer = () => {
     return (
         <div>
             <Routes>
-               <Route path="/" element={ 
+               {/* <Route path="/" element={ 
                 <Suspense fallback={<p>Loading..</p>}>
                     {isLoggedIn ? <Home/> : <Auth/>}
                 </Suspense>}>
-               </Route> 
+               </Route>  */}
                {/* <Route path="*" element={<h1>Not Found</h1>} /> */}
+               {
+                   isLoggedIn ? <Route path="/diary" element={ 
+                    <Suspense fallback={<p>Loading..</p>}>
+                        <Home/>
+                    </Suspense>}>
+                   </Route> : <Route path="/" element={ 
+                    <Suspense fallback={<p>Loading..</p>}>
+                        <Auth/>
+                    </Suspense>}>
+                   </Route>
+               }
             </Routes>
         </div>
     )
