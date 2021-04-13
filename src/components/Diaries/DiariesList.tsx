@@ -1,10 +1,10 @@
 import React, {FC, useEffect, useState} from 'react';
 import {useSelector} from "react-redux";
-import {RootState} from "./../../app_store/rootReducer";
+import {RootState} from "../../app_store/rootReducer";
 import Swal from 'sweetalert2';
-import { addDiary } from "./../../features/diary/diary.slice";
-import {setUser} from "./../../features/auth/user.slice";
-import {useAppDispatch} from "./../../app_store/store";
+import { addDiary } from "../../features/diary/diary.slice";
+import {setUser} from "../../features/auth/user.slice";
+import {useAppDispatch} from "../../app_store/store";
 import daysjs from 'dayjs';
 import Divider from "@material-ui/core/Divider";
 import Drawer from "@material-ui/core/Drawer";
@@ -23,22 +23,22 @@ import Tooltip from "@material-ui/core/Tooltip";
 import {Add} from "@material-ui/icons";
 import {Routes, Route, Outlet} from "react-router-dom";
 // Components.
-import DiaryEntriesList from "./../DiaryEntriesList/DiaryEntriesList";
-import Editor from "./../Editor/Editor";
-import DiaryTile from "./../DiaryTile/DiaryTile";
+import DiaryEntriesList from "../DiaryEntriesList/DiaryEntriesList";
+import Editor from "../Editor/Editor";
+import DiaryTile from "../DiaryTile/DiaryTile";
 // API.
-import {http} from "./../../api/index.api";
+import {http} from "../../api/index.api";
 // Features.
-import {clearToken, setAuthState} from "./../../features/auth/auth.slice";
-import {getUserSelector} from "./../../features/auth/user.slice";
+import {clearToken, setAuthState} from "../../features/auth/auth.slice";
+import {getUserSelector} from "../../features/auth/user.slice";
 // Model.
-import {Diary} from "./../../models/diary.interface";
-import {User} from "./../../models/user.interface";
+import {Diary} from "../../models/diary.interface";
+import {User} from "../../models/user.interface";
 // Styles 
-import {diaryDrawerStyles, createDiaryBtnStyles, createDiaryBtnContainerStyles, drawerAppBarStyles} from "./Diaries.style";
+import {diaryDrawerStyles, createDiaryBtnStyles, createDiaryBtnContainerStyles, drawerAppBarStyles} from "./DiariesList.style";
 
 
-const Diaries:FC = () => {
+const DiariesList:FC = () => {
     // Styles Classes
     const diaryDrawerClasses = diaryDrawerStyles()
     const diaryCreateBtnClasses = createDiaryBtnStyles()
@@ -252,4 +252,4 @@ const Diaries:FC = () => {
     )
 }
 
-export default Diaries
+export default DiariesList

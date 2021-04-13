@@ -8,13 +8,13 @@ import {http} from "./../../api/index.api";
 import {setUser} from "./../../features/auth/user.slice";
 // Components.
 import Editor from "./../Editor/Editor";
-import Diaries from "./../Diaries/Diaries";
+import DiariesList from "../Diaries/DiariesList";
 
 const Home:FC = () => {
     return (
        <Grid container>
            <Grid item sm={12} md={12} lg={12}>
-               <Diaries/>
+               <DiariesList/>
            </Grid>
             {/* <Grid item sm={12} md={12} lg={12}>
                 <div style={{paddingTop:5, paddingBottom:5}}>
