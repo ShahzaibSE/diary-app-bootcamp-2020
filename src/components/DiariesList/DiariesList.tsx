@@ -21,7 +21,7 @@ import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import Tooltip from "@material-ui/core/Tooltip";
 import {Add} from "@material-ui/icons";
-import {Routes, Route, Outlet} from "react-router-dom";
+import {Routes, Route, Outlet, useNavigate} from "react-router-dom";
 // Components.
 import DiaryEntriesList from "../DiaryEntriesList/DiaryEntriesList";
 import Editor from "../Editor/Editor";
@@ -49,6 +49,7 @@ const DiariesList:FC = () => {
     const dispatch = useAppDispatch()
     const diaries = useSelector((state: RootState)=>state.diaries)
     const user = useSelector((state:RootState)=>state.user)
+    const navigate = useNavigate()
     // For Mobile State.
     const [mobileOpen, setMobileOpen] = useState(false)
     //
@@ -59,6 +60,7 @@ const DiariesList:FC = () => {
     const logout = ()=>{
       dispatch(clearToken())
       dispatch(setAuthState(false))
+      navigate("/")
     }
     //
     useEffect(()=>{
@@ -139,7 +141,7 @@ const DiariesList:FC = () => {
       <div className="diaries-list">
         {/* Grid for create button  */}
           <Grid container direction="column" alignItems="center" justify="center" alignContent="center">
-              {/* <Routes> */}
+              <Routes>
                 
                   {/* <Route path=":id" element={
                      <Grid item sm={12} md={12} lg={12}>
@@ -178,10 +180,10 @@ const DiariesList:FC = () => {
                   }>
                     <Route path=":id" element={<DiaryEntriesList/>}/>
                 </Route>
-                 <Grid item sm={12} md={12} lg={12}>
+                 {/* <Grid item sm={12} md={12} lg={12}>
                    <Outlet/>
-                 </Grid>
-              {/* </Routes>  */}
+                 </Grid> */}
+              </Routes> 
                   {/* <Divider />
                       <Route path="/diary/:id" element={<DiaryEntriesList/>} /> */}
           </Grid>
