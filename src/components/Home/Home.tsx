@@ -8,7 +8,7 @@ import {http} from "./../../api/index.api";
 import {setUser} from "./../../features/auth/user.slice";
 // Components.
 import Editor from "./../Editor/Editor";
-import DiariesList from "../Diaries/DiariesList";
+import DiariesList from "../DiariesList/DiariesList";
 
 const Home:FC = () => {
     return (
