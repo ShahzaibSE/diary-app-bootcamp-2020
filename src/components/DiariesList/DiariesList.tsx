@@ -36,6 +36,8 @@ import {Diary} from "../../models/diary.interface";
 import {User} from "../../models/user.interface";
 // Styles 
 import {diaryDrawerStyles, createDiaryBtnStyles, createDiaryBtnContainerStyles, drawerAppBarStyles} from "./DiariesList.style";
+// Component.
+import Diaries from "../Diaries/Diaries";
 
 
 const DiariesList:FC = () => {
@@ -164,25 +166,23 @@ const DiariesList:FC = () => {
                         </Grid>}/>
                       ))}
                 </Route> */}
-
-                <Route path="/" element={
-                  <Grid container direction="column" justify="center" alignItems="center" alignContent="center">
-                    <Grid item sm={12} md={12} lg={12}>
-                        <Button className={diaryCreateBtnClasses.button} variant="contained" color="primary"
-                                    size="large" endIcon={<Add/>} onClick={createDiary} > Create Diary </Button>   
-                    </Grid>
-                    {diaries.map((diary, index)=>(
-                      <Grid item key={index} sm={12} md={12} lg={12}>
-                        <DiaryTile key={index} diary={diary}/> 
+                <Route path="/" element={<Diaries/>}>
+                  <Route path="/" element={
+                    <Grid container direction="column" justify="center" alignItems="center" alignContent="center">
+                      <Grid item sm={12} md={12} lg={12}>
+                          <Button className={diaryCreateBtnClasses.button} variant="contained" color="primary"
+                                      size="large" endIcon={<Add/>} onClick={createDiary} > Create Diary </Button>   
                       </Grid>
-                    ))}
-                  </Grid>
-                  }>
-                    <Route path=":id" element={<DiaryEntriesList/>}/>
+                      {diaries.map((diary, index)=>(
+                        <Grid item key={index} sm={12} md={12} lg={12}>
+                          <DiaryTile key={index} diary={diary}/> 
+                        </Grid>
+                      ))}
+                    </Grid>
+                    }>
+                      {/* <Route path=":id" element={<DiaryEntriesList/>}/> */}
+                  </Route>
                 </Route>
-                 {/* <Grid item sm={12} md={12} lg={12}>
-                   <Outlet/>
-                 </Grid> */}
               </Routes> 
                   {/* <Divider />
                       <Route path="/diary/:id" element={<DiaryEntriesList/>} /> */}
