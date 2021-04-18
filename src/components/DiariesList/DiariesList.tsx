@@ -144,28 +144,6 @@ const DiariesList:FC = () => {
         {/* Grid for create button  */}
           <Grid container direction="column" alignItems="center" justify="center" alignContent="center">
               <Routes>
-                
-                  {/* <Route path=":id" element={
-                     <Grid item sm={12} md={12} lg={12}>
-                        <DiaryEntriesList/>
-                     </Grid>
-                     }>
-                  </Route> */}
-               
-
-                {/* <Route path="/">
-                  <Grid item sm={12} md={12} lg={12}>
-                      <Button className={diaryCreateBtnClasses.button} variant="contained" color="primary"
-                                  size="large" endIcon={<Add/>} onClick={createDiary} > Create Diary </Button>   
-          
-                    </Grid>
-                   
-                      {diaries.map((diary, index)=>(
-                        <Route path="/" element={<Grid item key={index} sm={12} md={12} lg={12}>
-                            <DiaryTile key={index} diary={diary}/>   
-                        </Grid>}/>
-                      ))}
-                </Route> */}
                 <Route path="/" element={<Diaries/>}>
                   <Route path="/" element={
                     <Grid container direction="column" justify="center" alignItems="center" alignContent="center">
@@ -180,6 +158,7 @@ const DiariesList:FC = () => {
                       ))}
                     </Grid>
                     }>
+                    <Route path=":id" element={<h4>Diary Entry #1</h4>}/>  
                       {/* <Route path=":id" element={<DiaryEntriesList/>}/> */}
                   </Route>
                 </Route>

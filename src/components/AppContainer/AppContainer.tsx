@@ -12,7 +12,7 @@ const AppContainer = () => {
     const isLoggedIn = useSelector((state:RootState)=>state.auth.isAuthenticated)
     return (
         <div>
-            <Routes>
+            {/* <Routes> */}
                {/* <Route path="/" element={ 
                 <Suspense fallback={<p>Loading..</p>}>
                     {isLoggedIn ? <Home/> : <Auth/>}
@@ -30,7 +30,7 @@ const AppContainer = () => {
                     </Suspense>}>
                    </Route>
                }
-            </Routes>
+            {/* </Routes> */}
         </div>
     )
 }

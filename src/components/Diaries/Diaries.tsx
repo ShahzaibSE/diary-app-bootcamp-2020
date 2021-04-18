@@ -1,6 +1,8 @@
 import React from 'react';
 import {Outlet} from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
+// Component.
+import Editor from "./../Editor/Editor";
 
 const Diaries = () => {
     return (
