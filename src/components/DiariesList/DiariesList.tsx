@@ -158,8 +158,8 @@ const DiariesList:FC = () => {
                       ))}
                     </Grid>
                     }>
-                    <Route path=":id" element={<h4>Diary Entry #1</h4>}/>  
-                      {/* <Route path=":id" element={<DiaryEntriesList/>}/> */}
+                    {/* <Route path=":id" element={<h4>Diary Entry #1</h4>}/>   */}
+                      <Route path=":id" element={<DiaryEntriesList/>}/>
                   </Route>
                 </Route>
               </Routes> 
